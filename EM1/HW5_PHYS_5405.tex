@@ -1,0 +1,105 @@
+\documentclass{article}
+\usepackage[top=2cm,bottom=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW5 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\maketitle
+\section*{Jackson 3.9}
+
+The solution of the potential in cylindrical coordinates is $\Phi=R(\rho)Q(\phi)Z(z)$. Consider the boundary condiditons, the potential is periodic from $z=0$ to $z=L$ and on the cylindrical surface.This leads to three ordinary differential equations:
+
+\begin{align*}
+  \frac{d^2Z}{dz^2}+k^2Z=0\\
+  \frac{d^2Q}{d\phi^2}+\nu^2 Q=0\\
+  \frac{d^2 R}{d\rho^2}+\frac{1}{dR}{d\rho}-(k^2+\frac{\nu^2}{\rho^2})R=0
+\end{align*}
+Consider $z=0$, $\Phi=0$,
+\[ Z(z)=\sin(kz) \]
+Consider $z=L$, $\Phi=0$,
+\[ kL=2n\pi,\qquad k=2n\pi/L \]
+And
+\[ Q(\phi)=A\sin m\phi+ B\cos m\phi \]
+Also $R(\rho)$ is given by the modified Bessel functions,
+\[ R(\rho)=CI_\nu(k\rho)+DK_\nu(k\rho)\]
+We want $\Phi=finite$ at $\rho=0$, thus $D=0$
+Combining all these conditions, the general form of the solution is
+\[ \Phi(\rho,\phi,z)=\sum^{\infty}_{m=0}\sum^{\infty}_{n=1}I_m(\frac{2n\pi}{L}\rho)\sin(\frac{2n\pi z}{L})(A_{mn}\sin m\phi+B_{mn}\cos m\phi) \]
+On the cylindrical surface,
+\begin{align*}
+  V(\phi,z)=\sum_{m,n}I_m(\frac{2n\pi}{L}b)\sin(\frac{2n\pi z}{L})(A_{mn}\sin m\phi+B_{mn}\cos m\phi)
+\end{align*}
+There are two Fourier series, the coefficients are
+\[ A_{mn}=\frac{1}{I_m(2n\pi b/L)}\frac{2}{L}\frac{1}{\pi}\int_0^L dz \int_0^{2\pi} d\phi V(\phi,z)\sin(\frac{2n\pi}{L}z)\sin m\phi \]
+\[ B_{mn}=\frac{1}{I_m(2n\pi b/L)}\frac{2}{L}\frac{1}{\pi}\int_0^L dz \int_0^{2\pi} d\phi V(\phi,z)\sin(\frac{2n\pi}{L}z)\cos m\phi \]
+\pagebreak
+
+\section*{Jackson 3.13}
+
+The expansion of the Green function for a spherical shell bounded by $r=a$ and $r=b$ is
+\begin{align*}
+  G(\vec x,\vec x')=4\pi\sum^\infty_{l=0}\sum^l_{m=-l}\frac{Y^*_{lm}(\theta',\phi')Y_{lm}(\theta,\phi)}{(2l+1)[1-(\frac{a}{b})^{2l+1}]}(r_<^l-\frac{a^{2l+1}}{r_<^{l+1}})(\frac{1}{r_>^{l+1}}-\frac{r_>^l}{b^{2l+1}})
+\end{align*}
+For Dirichlet boudary condition, we have
+\[ \Phi(\vec x)=\frac{1}{4\pi\varepsilon_0}\int_V\rho(\vec x')G_D(\vec x,\vec x')dx'-\frac{1}{4\pi}\oint_S\Phi(\vec x')\pd{G_D}{n'}da'
+\]
+Here $\rho(\vec x')=0$ and the problem has azimuthal symmetry.
+\[ G(\vec x,\vec x')=\sum^\infty_{l=0}\frac{P_l(\cos\theta')P_l(\cos\theta)}{1-(\frac{a}{b})^{2l+1}}(r_<^l-\frac{a^{2l+1}}{r_<^{l+1}})(\frac{1}{r_>^{l+1}}-\frac{r_>^l}{b^{2l+1}}) \]
+On the $r=a$ boundary, $r_<=a$, $r_>=r$,
+\begin{align*}
+  \frac{\partial G_D}{\partial n'}=-\pd{G_D}{r'}|_{r'=a}=-\sum^\infty_{l=0}\frac{P_l(\cos\theta')P_l(\cos\theta)}{1-(\frac{a}{b})^{2l+1}}(la^{l-1}+(l+1)\frac{a^{2l+1}}{a^{l+2}})(\frac{1}{r^{l+1}}-\frac{r^l}{b^{2l+1}})
+\end{align*}
+On the $r=b$ boundary, $r_<=r$, $r_>=b$,
+\begin{align*}
+  \pd{G_D}{n'}=\pd{G_D}{r'}|_{r'=b}=\sum^\infty_{l=0}\frac{P_l(\cos\theta')P_l(\cos\theta)}{1-(\frac{a}{b})^{2l+1}}(r^l-\frac{a^{2l+1}}{r^{l+1}})(\frac{-(l+1)}{b^{l+2}}-\frac{lb^{l-1}}{b^{2l+1}})
+\end{align*}
+Hence,
+\begin{align*}
+  \Phi(\vec x)&=\frac{V}{4\pi}\sum^\infty_{l=0}\frac{P_l(\cos\theta)}{1-(\frac ab)^{2l+1}}[\int_0^{2\pi}d\phi'(la^{l-1}+(l+1)\frac{a^{2l+1}}{a^{l+2}})(\frac{1}{r^{l+1}}-\frac{r^l}{b^{2l+1}})a^2\int_0^{\pi/2}P_l(\cos\theta')\sin\theta'd\theta'\\
+              &-\int_0^{2\pi}(r^l-\frac{a^{2l+1}}{r^{l+1}})(\frac{-(l+1)}{b^{l+2}}-\frac{lb^{l-1}}{b^{2l+1}})b^2\int_{\pi/2}^\pi P_l(\cos\theta')\sin\theta'd\theta']\\
+              &=\frac{V}{2}\sum^{\infty}_{l\ odd}\frac{P_l(\cos\theta)}{1-(\frac ab)^{2l+1}}\{[(2l+1)a^{l+1}](\frac{1}{r^{l+1}}-\frac{r^l}{b^{2l+1}})-(r^l-\frac{a^{2l+1}}{r^{l+1}})[\frac{2l+1}{b^l}]\}(-\frac 12)^{(l-1)/2}\frac{(l-2)!!}{2(\frac{l+1}{2})!}
+\end{align*}
+In sum,
+\[ \boxed{\Phi(r,\theta,\phi)=\frac{V}{2}\sum^{\infty}_{l\ odd}\frac{P_l(\cos\theta)}{1-(\frac ab)^{2l+1}}\{[(2l+1)a^{l+1}](\frac{1}{r^{l+1}}-\frac{r^l}{b^{2l+1}})-(r^l-\frac{a^{2l+1}}{r^{l+1}})[\frac{2l+1}{b^l}]\}(-\frac 12)^{(l-1)/2}\frac{(l-2)!!}{2(\frac{l+1}{2})!}} \]
+\pagebreak
+
+\section*{Jackson 3.22}
+
+The Green fucntion is given by the Laplace equation:
+\[ \nabla^2 G(\vec x,\vec x')=-4\pi\delta(\vec x-\vec x')\]
+In polar coordinates,
+\[ \delta(\vec x-\vec x')=\frac{1}{\rho}\delta(\rho-\rho')\delta(\phi-\phi') \]
+And we have,
+\[ \delta(\phi-\phi')=\frac{2}{\beta}\sum^{\infty}_{m=1}\sin(m\pi\phi/\beta)\sin(m\pi\phi'/\beta) \]
+The Laplacian in polar coordinates,
+\[\nabla^2=\frac{1}{\rho}\pd{}{\rho}(\rho\pd{}{\rho})+\frac{1}{\rho^2}\pd{^2}{\phi^2} \]
+Let $G(\rho,\rho';\phi,\phi')=\sum^{\infty}_{m=1}g_m\sin(m\pi\phi/\beta)\sin(m\pi\phi'/\beta)$,
+We want
+\[ \nabla^2 G(\rho,\rho';\phi,\phi')=-\frac{4\pi}{\rho}\delta(\rho-\rho')\delta(\phi-\phi') \]
+Thus,
+\[\frac{1}{\rho}\pd{}{\rho}(\rho\pd{g_m}{\rho})-\frac{1}{\rho^2}(\frac{m\pi}{\beta})^2=-\frac{8\pi}{\beta\rho}\delta(\rho-\rho') \]
+When $\rho\neq\rho'$, the general solution is
+\[ g_m(\rho,\rho')=A_m\rho^{m\pi/\beta}+B_m\rho^{-(m\pi/\beta)} \]
+Consider the boudary condition,\\
+when $\rho\rightarrow 0$, $g_m=finite$,
+\[ B_m=0\qquad \rho<\rho' \]
+when $\rho=a$, for Dirichlet b.c.,$g_m=0$,
+\[ A=-\frac{B_m}{a^{2m\pi/\beta}} \qquad \rho>\rho'\]
+Combine together we get,
+\[ g_m=C_m\rho_<^{m\pi/\beta}[\frac{1}{\rho_>^{m\pi/\beta}}-\frac{\rho_>^{m\pi/\beta}}{a^{2m\pi/\beta}}]   \]
+Now consider the discontinuity of the derivative at $\rho=\rho'$,
+\[ \pd{g_m}{\rho}|_{\rho\rightarrow\rho'+}-\pd{g_m}{\rho}|_{\rho\rightarrow\phi'-}=-\frac{8\pi}{\beta\rho} \]
+\[ C_m=\frac{4}{m} \]
+Thus,
+\[\boxed{G(\rho,\rho';\phi,\phi')=\sum^{\infty}_{m=1}\frac 4m \rho^{m\pi/\beta}_<(\frac{1}{\rho_>^{m\pi/\beta}}-\frac{\rho_>^{m\pi/\beta}}{a^{2m\pi/\beta}})\sin(\frac{m\pi\phi}{\beta})\sin(\frac{m\pi\phi'}{\beta})}\]
+
+
+% \bibliographystyle{abbrv}
+% \bibliography{refs}
+\end{document}

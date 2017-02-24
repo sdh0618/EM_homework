@@ -1,0 +1,237 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW9, Classical Electromagnetism}
+\author{Deheng Song}
+\maketitle
+\section*{Jackson 5.20(a)}
+
+From equation (5.12),
+\[ \vec F=\int \vec J(\vec x)\times\vec B(\vec x)d^3x \]
+In the region the body occupies,
+\begin{align*}
+  \vec J_M=\nabla\times\vec M\\
+  \vec K_M =\vec M\times\vec n
+\end{align*}
+Outside the body, in absence of the macroscopic conduction currents,$ \vec J=0$.
+This yields that,
+\begin{align*}
+  \vec F=\int_V(\nabla\times\vec M)\times\vec Bd^3x+\int_S(\vec M\times \vec n)\times B\cdot d\vec a 
+\end{align*}
+For the first term,
+\begin{align*}
+  (\nabla\times\vec M)\times\vec B&=-\vec B\times(\nabla\times\vec M)\\
+                                  &=(\vec M\cdot\nabla)\vec B+(\vec B\cdot\nabla)\vec M+\vec M\times(\nabla\times\vec B)-\nabla(\vec M\cdot\vec B)
+\end{align*}
+Since $\vec J=0$, we have $\vec\times B=\vec J=0$.\\
+For the second terms,
+\begin{align*}
+  (\vec M\times\vec n)\times\vec B=-\vec B\times(\vec M\times\vec n) \\
+  =\vec n(\vec B\cdot\vec M)-\vec M(\vec B\cdot\vec n)
+\end{align*}
+Notice that,
+\begin{align*}
+  \int_V\nabla(\vec M\cdot\vec B)=\int_S\vec n(\vec M\cdot\vec B)da
+\end{align*}
+Two terms will cancel out. Here remains,
+\begin{align*}
+  \vec F=\int_V[(\vec M\cdot\nabla)\vec B+(\vec B\cdot\nabla)\vec M]d^3x-\int_S\vec M(\vec B\cdot\vec n)da
+\end{align*}
+Integrate by parts,
+\begin{align*}
+  \int_V(\vec M\cdot\nabla)\vec B=\int_S(\vec M\cdot\vec n)\vec B da-\int_V(\nabla\cdot M)\vec B d^3x
+\end{align*}
+\begin{align*}
+  \int_V(\vec B\cdot\nabla)\vec M=\int_S(\vec B\cdot\vec n)\vec M da-\int_V(\nabla\cdot\vec B)\vec M d^3x
+\end{align*}
+Considering $\nabla\cdot\vec B=0$, in general,
+\begin{align*}
+  \vec F=-\int_V(\nabla\cdot\vec M)\vec B d^3x+\int_S(\vec M\cdot\nabla)\vec Bda
+\end{align*}
+\pagebreak
+
+\section*{Jackson 5.20(b)}
+
+The sphere has an uniform magnetization,
+\begin{align*}
+  \vec M=M_0\sin\theta_0\cos\phi_0\hat x+M_0\sin\theta_0\sin\phi_0\hat y+M_0\cos\theta_0\hat z
+\end{align*}
+In the external magnetic field,
+\begin{align*}
+  \vec B=B_0(1+\beta y)\hat x+B_0(1+\beta x)\hat y\\
+  =B_0(1+\beta R\sin\theta\sin\phi)\hat x+B_0(1+\beta R\sin\theta\cos\phi)\hat y
+\end{align*}
+The normal unit vector will be
+\begin{align*}
+  \vec n=\sin\theta\cos\phi\hat x+\sin\theta\sin\phi\hat y+\cos\theta\hat z
+\end{align*}
+The force acting on the sphere,
+\begin{align*}
+  \vec F=-\int_V(\nabla\cdot\vec M)\vec B d^3x+\int_S(\vec M\cdot\vec n)\vec B da
+\end{align*}
+The first term vanishes since $\vec M$ is a constant.
+\begin{align*}
+  F_x&=M_0B_0\int_S(\sin\theta_0\sin\theta\cos\phi_0\cos\phi+\sin\theta_0\sin\theta\sin\phi_0\sin\phi+\cos\theta_0\cos\theta)(1+\beta R\sin\theta\sin\phi)da\\
+  &=M_0B_0R^2\int_0^{2\pi}\int_{-1}^{1}(\sin\theta_0\sin\theta\cos(\phi-\phi_0)+\cos\theta_0\cos\theta)(1+\beta R\sin\theta\sin\phi)d\phi d\cos\theta\\
+     &=\pi\beta M_0B_0R^3\sin\theta_0\sin\phi_0\int_{-1}^{1}\sin^2\theta d\cos\theta\\
+  &=\frac{4}{3}\pi\beta M_0B_0R^3\sin\theta_0\sin\phi_0\\
+  F_y&=M_0B_0\int_S(\sin\theta_0\sin\theta\cos\phi_0\cos\phi+\sin\theta_0\sin\theta\sin\phi_0\sin\phi+\cos\theta_0\cos\theta)(1+\beta R\sin\theta\cos\phi)da\\
+     &=M_0B_0R^2\int_0^{2\pi}\int_{-1}^{1}(\sin\theta_0\sin\theta\cos(\phi-\phi_0)+\cos\theta_0\cos\theta)(1+\beta R\sin\theta\cos\phi)d\phi d\cos\theta\\
+  &=\pi\beta M_0B_0R^3\sin\theta_0\cos\phi_0\int_{-1}^{1}\sin^2\theta d\cos\theta\\
+     &=\frac{4}{3}\pi\beta M_0B_0R^3\sin\theta_0\cos\phi_0\\
+  F_z&=0
+\end{align*}
+\pagebreak
+
+\section*{Jackson 5.21(a)}
+
+For a localized distribution of permanent magnetization, and in absence of macroscopic conduction currents, the magnetic field can be described by a scalar potential,
+\begin{align*}
+  \vec H=-\nabla\Phi_M
+\end{align*}
+The integral,
+\begin{align*}
+  \int\vec B\cdot\vec Hd^3x&=-\int\vec B\cdot\nabla\Phi_M\\
+                           &=\int\Phi_M\nabla\cdot\vec B d^3x-\int_S\Phi_M\vec B\cdot d\vec a
+\end{align*}
+The first term vanishes since $\nabla\cdot\vec B=0$. The magnetization distribution is localized, so the second term also vanishes when integrate over all space. Hence,
+\begin{align*}
+  \int \vec B\cdot\vec Hd^3 x=0
+\end{align*}
+when the integral is taken over all space.
+\pagebreak
+
+\section*{Jackson 5.21(b)}
+
+The potential energy for a differential element of the magnetization distribution,
+\begin{align*}
+  dW=-d\vec m\cdot\vec B
+\end{align*}
+Here $\vec B$ is caused by all the magnetization distribution but without the differential element $d\vec m$.The total magnetostatic energy can be written as,
+\begin{align*}
+  W=-\frac{1}{2}\int d\vec m\cdot\vec B=-\frac{1}{2}\int \vec M\cdot\vec B d^3x
+\end{align*}
+The factor $1/2$ yields from the fact that we double counted every element. Considering
+\begin{align*}
+  \vec B=\mu_0(\vec H+\vec M)
+\end{align*}
+\begin{align*}
+  W=-\frac{\mu_0}{2}\int \vec M\cdot\vec H d^3x-\frac{\mu_0}{2}\int\vec M^2 d^3x
+\end{align*}
+The second term can be considered as an additive constant depends on the distribution of the magnetization.
+\begin{align*}
+  W=-\frac{\mu_0}{2}\int\vec M\cdot\vec H d^3x
+\end{align*}
+Now use,
+\begin{align*}
+  \vec M=\frac{\vec B}{\mu_0}-\vec H
+\end{align*}
+\begin{align*}
+  W=-\frac{1}{2}\int (\vec B\cdot\vec H+\frac{\mu_0}{2}\vec H\cdot \vec H) d^3x
+\end{align*}
+The first term vanishes when integrate over all space, then
+\begin{align*}
+  W=\frac{\mu_0}{2}\int\vec H\cdot\vec H d^3x
+\end{align*}
+\pagebreak
+
+\section*{Jackson 5.26}
+
+% The self-inductance of the circuit,
+% \begin{align*}
+%   L&=\frac{\mu_0}{4\pi I^2}\int d^3x \int d^3x' \frac{\vec J(\vec x)\cdot\vec J(\vec x')}{|\vec x-\vec x'|}\\
+%   &=\frac{1}{I^2}\int d^3x\vec J(\vec x)\cdot\vec A(\vec x)
+% \end{align*}
+% In this case, $\vec J$ is nonzero only when inside the parallel wires. The magnetic induction is azimuthal,
+% \begin{align*}
+%   \vec B=\frac{\mu_0 I}{2\pi a}\frac{\rho_<}{\rho_>}\hat\phi+\frac{\mu_0 I}{2\pi b}\frac{\rho'_<}{\rho'_>}\hat\phi'
+% \end{align*}
+% Considering,
+% \begin{align*}
+%   L&=\frac{1}{I^2}\int\frac{\vec B\cdot\vec B}{\mu_0}d^3x\\
+%   &=\frac{\mu_0}{4\pi^2}\int (\frac{\rho_<}{a\rho_>}\hat\phi+\frac{\rho'_<}{b\rho'_>}\hat\phi')^2d^3x
+% \end{align*}
+% Here $\rho_<$($\rho_>$) is the smaller (larger) of $a$ and $\rho$. And $\rho'_<$($\rho'_>$) is the smaller (larger) of $b$ and $\rho'$. And in polar coordinates,
+% \begin{align*}
+%   \rho'=\sqrt{\rho^2+d^2-2d\rho\cos\phi}
+% \end{align*}
+% \begin{align*}
+%   \hat\phi\cdot\hat\phi'=\cos(\phi+\phi')
+% \end{align*}
+% Try to evaluate the integral in three regions,
+% \begin{align*}
+%   L_1&=\frac{\mu_0}{4\pi^2}\int_0^a\int_0^{2\pi}(\frac{1}{a^2}\frac{\rho^2}{a^2}+\frac{2}{ab}\frac{\rho b}{a\rho'}\hat\phi\cdot\hat\phi'+\frac{1}{b^2}\frac{b^2}{\rho'^2})\rho d\rho d\phi\\
+%      &=\frac{\mu_0}{8\pi}+
+% \end{align*}
+% \begin{align*}
+%   L_2&=\frac{\mu_0}{4\pi^2}\int_a^d\int_0^{2\pi}(\frac{1}{\rho^2}+\frac{2}{\rho\rho'}\hat\phi\cdot\hat\phi'+\frac{1}{\rho'^2})\rho d\rho d\phi\\
+%   &=\frac{\mu_0}{2\pi}\ln(\frac{d}{a})
+% \end{align*}
+% \begin{align*}
+%   L_3=\frac{\mu_0}{4\pi^2}\int_0^{b}\int_0^{2\pi}(\frac{1}{\rho^2}+\frac{2}{b^2}\frac{\rho'}{\rho}\hat\phi\cdot\hat\phi'+\frac{\rho'}{b^4})\rho'd\rho'd\phi'
+%   \end{align*}
+ 
+If the two-wire transmission line is long enough, we can ignore the connecting parts. The seft-inductance of the circuit can be expressed as the total self-inductances from two infinite long wire with radius $a$, $b$.\par
+The magnetic field induced by one wire,
+\begin{align*}
+  \vec B_a=\frac{\mu_0}{2\pi a}\frac{\rho_<}{\rho_>}\hat\phi
+\end{align*}
+The self-inductance,
+\begin{align*}
+  L_a&=\frac{1}{I^2}\int\frac{\vec B\cdot\vec B}{\mu_0}d^3x\\
+     &=\frac{\mu_0}{4\pi^2}\int_0^{2\pi}d\phi[\int_0^a\frac{\rho^3}{a^4}d\phi+\int_a^d\frac{1}{\rho}d\phi]\\
+     &=\frac{\mu_0}{8\pi}+\frac{\mu_0}{4\pi}\ln\frac{d}{a}
+\end{align*}
+In the similar way,
+\begin{align*}
+  \vec B_b=\frac{\mu_0}{2\pi b}\frac{\rho'_<}{\rho'_>}\hat\phi'
+\end{align*}
+\begin{align*}
+  L_b&=\frac{1}{I^2}\int\frac{\vec B\cdot\vec B}{\mu_0}d^3x\\
+  &=\frac{\mu_0}+\frac{\mu_0}{4\pi}\ln\frac{d}{b}
+\end{align*}
+The self-inductance of the circuit,
+\begin{align*}
+  L=L_a+L_b=\frac{\mu_0}{4\pi}+\frac{\mu_0}{2\pi}\ln\frac{d^2}{ab}
+\end{align*}
+\pagebreak
+
+\section*{Jackson 5.27}
+The magnetic induction,
+\begin{align*}
+B=\left\{\begin{array}{cc}
+\frac{\mu_0I}{2\pi b}\frac{\rho_<}{\rho_>}\hat\phi & \rho<a\\
+0 & \rho > a
+\end{array}\right.
+\end{align*}
+Here $\rho_>=max\{b,\rho\}$ and $\rho_<=min\{b,\rho\}$. The self-inductance,
+\begin{align*}
+  L&=\frac{1}{I^2}\int\frac{\vec B\cdot\vec B}{\mu_0}d^3x\\
+   &=\frac{\mu_0}{4\pi^2}\int_0^{2\pi}\int_0^b\frac{\rho^3}{b^4}d\rho d\phi+\frac{\mu_0}{4\pi^2}\int_b^a\int_0^b\frac{1}{\rho}d\rho d\phi\\
+   &=\frac{\mu_0}{8\pi}+\frac{\mu_0}{4\pi}\ln(\frac{a^2}{b^2})
+\end{align*}
+When the inner conductor is a thin hollow tube,
+\begin{align*}
+  \vec B=\left\{
+  \begin{array}{cc}
+    0 & \rho<b\\
+    \frac{\mu_0I}{2\pi \rho}\hat\phi & b<\rho<a\\
+    0 & \rho>a
+  \end{array}
+  \right.
+\end{align*}
+The self-inductance,
+\begin{align*}
+  L&=\frac{1}{I^2}\int\frac{\vec B\cdot\vec B}{\mu_0}d^3x\\
+   &=\frac{\mu_0}{4\pi^2}\int_0^{2\pi}\int_b^a\frac{1}{\rho}d\rho d\phi\\
+   &=\frac{\mu_0}{4\pi}\ln(\frac{a^2}{b^2})
+\end{align*}
+% \bibliographystyle{abbrv}
+% \bibliography{refs}
+\end{document}

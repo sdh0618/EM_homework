@@ -1,0 +1,187 @@
+\documentclass[notitlepage]{revtex4-1}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW3 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+%\date{\ }
+\maketitle
+\nopagebreak[4]
+\section*{Jackson 2.12}
+The series solution shows that
+\[
+  a_0 + b_0 \ln\rho+\sum^{\infty}_{n=1} a_n \rho^n \sin(n\phi+\alpha_n)+\sum^{\infty}_{n=1} b_n \rho^{-n} \sin(n\phi+\beta_n)
+\]
+In this problem, the boundary conditions are
+%
+\begin{align*}
+   \Phi(0,\phi)=finite\ \Rightarrow\ b_0=0,\ b_n=0
+\end{align*}
+%
+And the potential is specified on the surface of the cylinder, that is, when $\rho=b$,
+%
+\begin{align*}
+  \Phi(b,\phi')=a_0+\sum^{\infty}_{n=1} a_n \rho^n \sin(n\phi'+\alpha_n)\\
+  =a_0+\sum^{\infty}_{n=1} b^n (a_n\sin n\phi'+b_n\cos n\phi')\\
+\end{align*}
+%
+The coefficents above are given by,
+%
+\begin{align*}
+  &a_0=\frac{1}{2\pi}\int^{2\pi}_{0}\Phi(b,\phi')d\phi'\\
+  &a_n=\frac{1}{\pi b^n}\int^{2\pi}_{0}\Phi(b,\phi')\sin n\phi' d\phi'\\
+  &b_n=\frac{1}{\pi b^n}\int^{2\pi}_{0}\Phi(b,\phi')\cos n\phi' d\phi'
+\end{align*}
+Insert to the series solution,
+\begin{align*}
+  \Phi(b,\phi)=\frac{1}{\pi}\int^{2\pi}_{0}\Phi(b,\phi')[\frac{1}{2}+(\frac{\rho}{b})^n\sum^{\infty}_{n=1}\cos n(\phi-\phi')]d\phi'
+\end{align*}
+Here
+\[\cos n(\phi-\phi')=\frac{1}{2}[e^{in(\phi-\phi')}+e^{-in(\phi-\phi')}]\]
+For $\rho$ inside the cylinder, $|\frac{\rho}{b}e^{\pm in(\phi-\phi')}|<1$. With the geometric series $\frac{1}{1-r}=\sum^{\infty}_{n=0}r^n$, we find
+\begin{align*}
+  \frac{1}{2}+\sum^{\infty}_{n=1}[(\frac{\rho}{b})^n e^{in(\phi-\phi')}+(\frac{\rho}{b})^n e^{-in(\phi-\phi')}]\\
+  = \frac{1}{2}+\frac{1}{2}[\frac{1}{1-\frac{\rho}{b}e^{i(\phi-\phi')}}+\frac{1}{1-\frac{\rho}{b}e^{-i(\phi-\phi')}}-2]\\
+  =\frac{1}{2}(\frac{2b^2-2\rho b\cos(\phi-\phi')}{b^2+\rho^2-2\rho b\cos(\phi-\phi')}-1)\\
+  =\frac{b^2-\rho^2}{b^2+\rho^2-2\rho b\cos(\phi-\phi')}
+\end{align*}
+Insert to the integral,
+\begin{align*}
+  \Phi(\rho,\phi)=\frac{1}{2\pi}\int^{2\pi}_0\Phi(b,\phi')\frac{b^2-\rho^2}{b^2+\rho^2-2b\rho\cos(\phi-\phi')}d\phi'
+\end{align*}
+\pagebreak
+
+\section*{Jackson 2.13}
+
+Like (2.12), the two-dimensional potential
+%
+\begin{align*}
+  \Phi(\rho,\phi)=a_0+\sum^{\infty}_{n=1}\rho^n(a_n\sin n\phi+b_n\cos n\phi)
+\end{align*}
+%
+The potential is specified at $\rho=b$,
+%
+\begin{align*}
+  \Phi(b,\phi')=
+  \begin{cases}
+    V_1, & 0<\phi'<\pi\\
+    V_2, & \pi<\phi'<2\pi
+  \end{cases}
+\end{align*}
+Notice that here $\phi'$ is measured from the plane through the gap to the plane perpendicular.\\
+The coefficents are
+\begin{align*}
+  a_0&=\frac{1}{2\pi}\int^{2\pi}_0\Phi(b,\phi')=\frac{V_1+V_2}{2}\\
+  a_n&=\frac{1}{2\pi b^n}\int^{2\pi}_0\Phi(b,\phi')\sin n\phi' d\phi'=
+  \begin{cases}
+    0, & n\ even\\
+    \frac{2(V_1-V_2)}{n\pi b^n}, & n\ odd
+  \end{cases}\\
+  b_n&=\frac{1}{2\pi b^n}\int^{2\pi}_0\Phi(b,\phi')\cos n\phi' d\phi'=0
+\end{align*}
+Back to the series solution,
+\begin{align*}
+  \Phi(b,\phi')=\frac{V_1+V_2}{2}+\frac{2(V_1-V_2)}{\pi}\sum^{\infty}_{n=1}\frac{1}{2n-1}(\frac{\rho}{b})^{2n-1}\sin (2n-1)\phi'
+\end{align*}
+Here
+\begin{align*}
+  &\sum^{\infty}_{n=1}\frac{1}{2n-1}(\frac{\rho}{b})^{2n-1}\sin (2n-1)\phi'\\
+  =&\sum^{\infty}_{n=1}\frac{e^{i(2n-1)\phi'}-e^{-i(2n-1)\phi'}}{2i}\\
+  =&\frac{1}{2}\sum^{\infty}_{n=1}\frac{1}{2n-1}\frac{i^{2n-1}}{i}(\frac{i\rho}{b})^{2n-1}(e^{i(2n-1)\phi'}-e^{-i(2n-1)\phi'})\\
+  =&\frac{1}{2}(\arctan(\frac{i\rho}{b}e^{i\phi'})-\arctan(\frac{i\rho}{b}e^{-i\phi'}))\\
+  =&\frac{1}{2}\arctan\frac{2\rho b\sin\phi'}{b^2-r^2}
+\end{align*}
+In the problem, $\phi$ is defined as angle from plane perpendicular to the plane through the gap. Thus $\phi'=\phi+\pi/2$.
+\[ \sin\phi'=\sin(\phi+\pi/2)=cos\phi \]
+The potential inside the cylinder is given by
+\[ \Phi(\rho,\phi)=\frac{V_1+V_2}{2}+\frac{V_1-V_2}{\pi}\arctan(\frac{2b\rho\cos\phi}{b^2-\rho^2}) \]
+\pagebreak
+
+\section*{Jackson 2.17}
+\subsection*{(a).}
+\[ R=[(x-x')^2+(y-y')^2+(z-z')^2]^{1/2}=[(\rho^2+a^2)]^{1/2} \]
+where $\rho^2=[(x-x')^+(y-y)^2]$ and $a=(z-z')$.\\
+We construct the free-space Green function $G(x,y; x',y')$ by integrating
+\begin{align*}
+  G(x,y;x',y')&=\int^Z_{-Z}\frac{1}{\sqrt{\rho^2+a^2}}da\\
+              &=\ln|Z+\sqrt{Z^2+\rho^2}|-\ln|-Z+\sqrt{Z^2+\rho^2}|\\
+              &=\ln\frac{|Z+\sqrt{Z^2+\rho^2}|}{|-Z+\sqrt{Z^2+\rho^2}|}\\
+              &=\ln\frac{(Z+\sqrt{Z^2+\rho^2})^2}{(Z+\sqrt{Z^2+\rho^2})(-Z+\sqrt{Z^2+\rho^2})}\\
+              &=\ln\frac{2Z^2+2Z\sqrt{Z^2+\rho^2}+\rho^2}{\rho^2}\\
+              &=\ln(2Z^2+2Z\sqrt{Z^2+\rho^2}+\rho^2)-\ln(\rho^2)
+\end{align*}
+When Z is large, the first term can be considered as a constant that is inessential.So the Green function
+\begin{align*}
+  G(x,y;x',y')&=-\ln[(x-x')^2+(y-y')^2]\\
+              &=-\ln[\rho^2+\rho'^2-2\rho\rho'\cos(\phi-\phi')]
+\end{align*}\par
+\subsection*{(b).}
+\[\nabla'^2=\frac{1}{\rho'}\pd{}{\rho}(\rho'\pd{}{\rho'})+\rho'^2\pd{^2}{\phi'^2}\]
+Try $\nabla'^2$ on the Fourier series,
+\begin{align*}
+  \nabla'^2 G=\frac{1}{2\pi}\sum^{\infty}_{-\infty}[\frac{1}{\rho'}\pd{}{\rho'}(\rho'\pd{g_m}{\rho'})-\frac{m^2}{\rho'^2}g_m]e^{im(\phi-\phi')}
+\end{align*}
+We know $\frac{1}{2\pi}\sum^{\infty}_{-\infty}e^{im(\phi-\phi')}$. If the radial part above satisfy,
+\[\frac{1}{\rho'}\pd{}{\rho'}\
+  (\rho'\pd{g_m}{\rho'})-\frac{m^2}{\rho'^2}g_m=-4\pi\frac{\delta(\rho-\rho')}{\rho} \]
+We can find
+\[ \nabla'^2 G=-4\pi\frac{1}{\rho}\delta(\rho-\rho')\delta(\phi-\phi')\]
+By definition, the series G is the expansion of the free-space Green function for two-dimension.\par
+\subsection*{(c).}
+When $\rho\neq\rho'$ , the radial part of the Laplacian equation in $(b).$ turns to a Poission equation,
+\[ \frac{1}{\rho'}\pd{}{\rho'}(\rho\pd{g_m}{\rho'})-\frac{m^2}{\rho'^2}g_m=0 \]
+The general solution is given by
+\begin{align*}
+  g_m(\rho,\rho')=
+  \begin{cases}
+    a_m\rho'^m, & \rho'<\rho\\
+    b_m\rho'^{-m} & \rho'>\rho
+  \end{cases}
+\end{align*}
+The two term should match at $\rho'=\rho$, so $a_m\rho^m=b_m\rho^{-m}$. 
+\begin{align*}
+  g_m=c_m(\frac{\rho_<}{\rho_>})^m
+\end{align*}
+The discontinuity in the derivative gives
+\[-\frac{4\pi}{\rho}=\frac{d g_m}{d \rho'}|_{\rho'\rightarrow\rho-}-\frac{d g_m}{d \rho'}|_{\rho'\rightarrow\rho+}=-2m\frac{c_m}{\rho}
+\]
+When $m=0$ the first term in the potential is $b_0\ln(\rho)$ and
+\[\frac{-4\pi}{\rho}=\frac{b_0}{\rho}\]
+Put $g_m=\frac{2\pi}{m}(\frac{\rho_<}{\rho_>})^m$ back to the series,
+\begin{align*}
+  G(\rho,\phi;\rho',\phi')&=-2\ln(\rho_>)+\sum^{\infty}_{-\infty}\frac{1}{m}e^{im(\phi-\phi')}(\frac{\rho_<}{\rho_>})^m\\
+                          &=-\ln(\rho_>^2)+[\sum^{-1}_{-\infty}+\sum^{\infty}_{1}]\frac{1}{m}e^{im(\phi-\phi')}(\frac{\rho_<}{\rho_>})^m\\
+                          &=-\ln(\rho_>^2)+\sum^{\infty}{1}\frac{1}{m}(\frac{\rho_<}{\rho_>})^m[e^{im(\phi-\phi')}+e^{-im(\phi-\phi')}]\\
+                          &=-\ln(\rho_>^2)+2\sum^{\infty}{1}\frac{1}{m}(\frac{\rho_<}{\rho_>})^m\cos[m(\phi-\phi')]
+\end{align*}
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\\~\\
+\section*{Jackson 2.24}
+The general potential in the region can be written as a function
+\[ f(\phi)=\sum^{\infty}_{m=1}A_m\sin(m\pi\phi/\beta) \]
+The coefficient
+\[ A_m=\frac{2}{\beta}\int^{\beta}_0f(\phi')\sin(m\pi\phi'/\beta)d\phi' \]
+Insert to the equation above,
+\[ f(\phi)=\int^{\beta}_0\frac{2}{\beta}\sum^{\infty}_0\sin(m\pi\phi/\beta)\sin(m\pi\phi'/\beta)f(\phi')d\phi' \]
+Thus,
+\[\frac{2}{\beta}\sum^{\infty}_0\sin(m\pi\phi/\beta)\sin(m\pi\phi'/\beta)=\delta(\phi-\phi'))\]
+
+
+
+
+%\bibliographystyle{abbrv}
+%\bibliography{refs}
+\end{document}

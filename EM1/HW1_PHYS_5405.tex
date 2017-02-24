@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage[top=2.5cm]{geometry}
+\usepackage{amsmath}
+\title{HW1 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\date{\ }
+\begin{document}
+  \maketitle
+  %--------------1.1--------------------%
+  \section*{1.1}
+  (a). The electric field inside a conductor is zero when the conductor is under the electrostatic equilibrium. Use the Gauss's law on the
+  conductor:
+  \[ \nabla\cdot\vec E =\frac{\rho}{\varepsilon}, \]
+  we find:
+  \[ \rho=0\ inside\ the \ conductor\]
+  since the electric field $\vec E$ vanished everywhere. The excess charges placed on a conductor can only lie on the surface.\par
+  $~$\\
+  (b). For a closed path, the curl integral
+  \[ \oint\vec E\cdot d\vec l=0. \]
+  No matter what a charge distribution outside the conductor is, we can find a curl part in the conductor and part in the hollow, and
+  \[\int_{cond} \vec E\cdot d\vec l+\int_{hol} \vec E\cdot d\vec l=0 \]
+  The first part of the integral will always be zero since there is no electric field in the conductor. For the arbitrariness of the
+  curl, the integral could be zero only when $\vec E=0$ everywhere inside the hollow. So the conductor shields the hollow from fields due to charges
+  outside.\par
+  For the charges placed inside the hollow, it's easy to find a Gussian surface in the conductor surrounding the hollow. The electric
+  field and charge in the conductor are zero, and
+  \[\oint \vec{E}\cdot\vec{n}da=0. \]
+  So the total charges inside the Gussian surface is zero. If the charges placed in the hollow is $Q$, there must be $-Q$ induced on the
+  interior surface of the conductor. To reach the electrostatic equilibrium, the charge induced on the exterior surface will be $Q$ too.
+  For a Gussian surface surrounding the whole conductor,
+  \[ \oint\vec E\cdot\vec nda=\frac{Q}{\varepsilon_0} \]
+  which means that the conductor does not shield its exterior from the fields due to charges inside it.
+  \par
+  $~$\\
+  (c). The Gauss's law tells us that at the surface of the conductor, the normal component of electric fields:
+  \[(\vec{E}_2-\vec{E}_1)\cdot \vec n=\sigma/\varepsilon_0 \]
+  Since the electric field on the side 1 (inside) is zero, we find:
+  \[\vec{E}_2\cdot n =E_{2n}=\sigma/\varepsilon_0 \]
+  And the parallel component of $\vec{E}$ is continous:
+  \[ (\vec{E}_2-\vec{E}_1)\cdot\vec{t}=0\]
+  Also we find,
+  \[ E_{2t}=E_{1t}=0.\]
+  Thus the electric filed is normal to the surface of the conductor and the magnitude is $\sigma/\varepsilon_0$.
+  \pagebreak
+  %-----------------1.5-------------------------%
+  \section*{1.5}
+  \begin{align*}
+    \nabla^2\Phi&=\nabla^2[\frac{q}{4\pi\varepsilon_0}\frac{e^{-\alpha r}}{r}(1+\frac{\alpha r}{2})]\\
+    &=\frac{q}{4\pi\varepsilon_0}\nabla^2(\frac{e^{-\alpha r}}{r}+\frac{\alpha}{2}e^{-\alpha r})
+  \end{align*}
+  The Laplacian in the spherical coordinates can be writen as:
+  \[ \nabla^2=\frac{1}{r^2}\frac{\partial}{\partial r}(r^2\frac{\partial}{\partial r})+\frac{1}{r^2\sin^2\phi}\frac{\partial^2}{\partial \theta}
+  +\frac{1}{r^2\sin\phi}\frac{\partial}{\partial\phi}(\frac{1}{\sin\phi}\frac{\partial}{\partial\phi})
+  \]
+  When $r>0$,
+  \begin{align*}
+      \nabla^2\Phi&=\frac{q}{4\pi\varepsilon_0}\frac{1}{r^2}\frac{\partial}{\partial r}r^2\frac{\partial}{\partial r}(\frac{e^{-\alpha r}}{r}
+      +\frac{\alpha}{2}e^{-\alpha r})\\
+      &=\frac{q}{4\pi\varepsilon_0}\frac{1}{r^2}\frac{\partial}{\partial r}(-e^{-\alpha r}-\alpha re^{-\alpha r}-\frac{\alpha^2 r^2}{2}e^{-\alpha r})\\
+      &=\frac{q}{4\pi\varepsilon_0}\frac{1}{r^2}(\alpha e^{-\alpha r}+\alpha^2 re^{-\alpha r}-\alpha e^{-\alpha r}-\alpha^2 re^{-\alpha r}+\frac{\alpha^3 r^3}{2}e^{-\alpha r})\\ 
+      &=\frac{q\alpha^3}{8\pi\varepsilon_0}e^{-\alpha r}
+  \end{align*}
+When $r\rightarrow 0$,
+\begin{align*}
+    \nabla^2\Phi&=\frac{q}{4\pi\varepsilon_0}\nabla^2(\frac{1}{r}+\frac{\alpha}{2})\\
+    &=\frac{q}{4\pi\varepsilon_0}(\nabla^2\frac{1}{r}+\nabla^2\frac{\alpha}{2})
+\end{align*}
+The last term vanish and $\nabla^2 \frac{1}{r}=-4\pi\delta(r)$,
+\begin{align*}
+    \nabla^2\Phi&=-\frac{q}{\varepsilon_0}\delta(r)
+\end{align*}
+Add the two part, and $\nabla^2\Phi=-\frac{\rho}{\varepsilon_0}$,
+\begin{align*}
+    \rho=q\delta(r)-\frac{q\alpha^3}{8\pi}e^{-\alpha r}
+\end{align*}
+The first term $q\delta(r)$ indicates a point charge $q$ lies on the orgin, which can be interpret as the charge on the hydrogen nucleus.
+And the last term describes the charge distribution around the nucleus.
+\begin{align*}
+  -\frac{q\alpha^3}{8\pi}\int_0^{2\pi}\int_0^\pi\int_0^\infty e^{-\alpha r}r^2\sin\theta drd\phi d\theta=-q
+\end{align*}
+remains the total charge of the hydrogen atom neutral.
+\pagebreak
+%-------------------1.10---------------%
+\section*{1.10}
+The mathematical form of the mean value theorem can be written as
+\[ \Phi(\vec x)=\frac{\oint_S\Phi(\vec x')da'}{4\pi R^2} \]
+where $\Phi(\vec x')$ is the potential on the surface of a sphere centered on $\vec x$ and $R$ is the radius of the sphere. This motivates us
+to consider the Green's theorem on Dirichlet boundary:
+\[ \Phi(\vec x)=\frac{1}{4\pi\varepsilon_0}\int_V\rho(\vec x')G_D(\vec x,\vec x')d^3d-\frac{1}{4\pi}\oint_S\Phi(\vec x')\frac{\partial G_D}
+{\partial n'}da' \]
+For charge free space $\rho=0$,
+\begin{align*}
+\Phi(\vec x)&=-\frac{1}{4\pi}\oint_S\Phi(\vec x')\frac{\partial G_D}{\partial n'}da\\
+            &=\frac{\oint_S\Phi(\vec x')da'}{-4\pi\frac{1}{\partial G_D/\partial n'}}
+\end{align*}
+\[ G_D(\vec x,\vec x')=\frac{1}{|\vec x-\vec x'|}+F(\vec x,\vec x') \]
+vanish on the surface. Since $1/|\vec x-\vec x'|=1/R$ on the surface, it's easy to find $F=-1/R$,
+\[ G_D(\vec x,\vec x')=\frac{1}{|\vec x-\vec x'|}-\frac{1}{R} \]
+On the surface of the sphere,
+\begin{align*}
+\frac{\partial G_D}{\partial n'}&=\frac{\partial (1/|\vec x-\vec x'|-1/R)}{\partial n'}\\
+&=\frac{\partial (1/|\vec x-\vec x'|)}{\partial n'}-\frac{\partial (1/R)}{\partial n'}\\
+&=-\frac{1}{R^2}
+\end{align*}
+Thus,
+  \begin{align*}
+  \Phi(\vec x)&=-\frac{1}{4\pi}\oint_S\Phi(\vec x')\frac{\partial G_D}{\partial n'}da\\
+              &=\frac{\oint_S\Phi(\vec x')da'}{-4\pi\frac{1}{\partial G_D/\partial n'}}\\
+              &=\frac{\oint_S\Phi(\vec x')da'}{4\pi R^2}
+  \end{align*}
+The mean value theorem is proved.
+\pagebreak
+%------------------1.12----------------%
+\section*{1.12}
+Let $\phi=\Phi$ and $\psi=\Phi'$, the Green's theorem tells us that:
+\[ \int_V(\Phi'\nabla^2\Phi-\Phi\nabla^2\Phi')d^3x=\oint_S[\Phi'\frac{\partial\Phi}{\partial n}-\Phi\frac{\partial\Phi'}{\partial n}]da\]
+We know from the Possion's equation that
+\[ \nabla^2\Phi=\frac{\rho}{\varepsilon_0}\qquad\nabla^2\Phi'=\frac{\rho'}{\varepsilon_0} \]
+Since the surface is conducting, we find the normal component of the elelctric field on the surface
+\[ E_n=-\frac{\sigma}{\varepsilon_0} \]
+With $E_n=-\frac{\partial\Phi}{\partial n}$, we get
+\[\frac{\partial\Phi}{\partial n}=\frac{\sigma}{\varepsilon_0}\qquad\frac{\partial\Phi'}{\partial n}=\frac{\sigma'}{\varepsilon_0} \]
+Substitute into the Green's theorem,
+\[\int_V(\Phi'\frac{\rho}{\varepsilon_0}+\Phi\frac{\rho'}{\varepsilon_0})d^3x=\oint_S[\Phi'\frac{\sigma}{\varepsilon_0}-\Phi\frac{\sigma'}{\varepsilon_0}]da \]
+Thus,
+\[ \int_V\rho'\Phi d^3x+\oint_S\sigma'\Phi da=\int_V\rho\Phi' d^3x\oint_S\sigma\Phi' da \]
+\end{document}

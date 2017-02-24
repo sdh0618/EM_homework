@@ -1,0 +1,141 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{empheq}
+\usepackage{geometry}
+\title{HW2 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\date{\ }
+\begin{document}
+\title{HW2 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\date{\ }
+\maketitle
+\section*{Jackson 1.14}
+Apply Green's theorem with $\phi=G(\vec x,\vec y)$ and $\psi=G(\vec x', \vec y)$,
+\begin{align*}
+  \int_V-4\pi(G(\vec x,\vec y)\delta(\vec y-\vec x')+G(\vec x',y')\delta(\vec y-\vec x))d^3y=\oint_S[G(\vec x,\vec y)\frac{\partial G(\vec x',\vec y)}{\partial n}-G(\vec x',\vec y)\frac{\partial G(\vec x,\vec y)}{\partial n}]da
+\end{align*}
+Thus,
+\[\boxed{ G(\vec x,\vec x')-G(\vec x', \vec x)=-\frac{1}{4\pi}\oint_S[G(\vec x,\vec y)\frac{\partial G(\vec x',\vec y)}{\partial n}-G(\vec x',\vec y)\frac{\partial G(\vec x,\vec y)}{\partial n}]da} \]\par
+(a).For the Dirichlet bounddary conditions:
+\begin{align*}
+  \Phi(\vec x)=\frac{1}{4\pi\varepsilon_0}\int_V\rho(\vec x')Gd^3x'-\frac{1}{4\pi}\oint_S \Phi\frac{\partial G}{\partial n'}da'
+\end{align*}
+For the Dirichlet boundary condition, the Green function $G_D=0$ on the surface. We have
+\begin{align*}
+  G(\vec x,\vec x')-G(\vec x', \vec x)&=-\frac{1}{4\pi}\oint_S[G(\vec x,\vec y)\frac{\partial G(\vec x',\vec y)}{\partial n}-G(\vec x',\vec y)\frac{\partial G(\vec x,\vec y)}{\partial n}]da\\
+                                      &=-\frac{1}{4\pi}\oint_S[0\frac{\partial G(\vec x',\vec y)}{\partial n}-0\frac{\partial G(\vec x,\vec y)}{\partial n}]da\\
+                                      &=0
+\end{align*}
+The Green function $G_D$ is symmetric.\par
+(b).Eq(1.45) tells us that, for Neumann boundary condition,
+\[ \frac{\partial G_N}{\partial n'}=-\frac{4\pi}{S} \]
+We find
+\[ G(\vec x,\vec x')-G(\vec x',\vec x)=\frac{1}{S}\oint_S[G_N(\vec x,\vec y)-G_N(\vec x',\vec y)]da_y \]
+And\[ G(\vec x,\vec x')-\frac{1}{S}\oint_S G_N(\vec x,\vec y)da_y=G(\vec x',\vec x)-
+  \frac{1}{S}\oint_S G_N(\vec x',\vec y)da_y
+\]
+Thus $G_N(\vec x,\vec x')-F(x)$ is symmetric.\par
+(c).Add $F(x)$ to the solution under Neumann Boundary Condition:
+ \begin{align*}
+   \Phi'(\vec x)&=<\phi>_S+\frac{4\pi\varepsilon_0}\int_V\rho(\vec x')(G_N+F)d^3x'+\frac{1}{4\pi}\oint_S(G_N+F)\frac{\partial \Phi}{\partial n'}da'\\
+               &=\Phi(\vec x)+\frac{F(\vec x)}{4\pi}(\frac{\int_V\rho(\vec x')d^3x'}{\varepsilon_0}+\oint_S\frac{\partial \Phi}{\partial n'}da')
+ \end{align*}
+ With Gauss's law and $\partial \Phi/\partial n'=-\vec E\cdot\vec n'$, we find
+ \[ \frac{\int_V\rho(\vec x')d^3x'}{\varepsilon_0}+\oint_S\frac{\partial \Phi}{\partial n'}da'=\oint_S\vec E\cdot\vec n'da'-\oint_S\vec E\cdot\vec n'da'=0 \]
+ Thus,
+  \[ \boxed{\Phi'(\vec x)=\Phi(\vec x)} \]
+ The addition of $F(\vec x)$ does not affect the potential $\Phi(\vec x)$
+ \pagebreak
+\section*{Jackson 2.2}\par
+(a).Let the center of the shpere lies on the orgin. Consider an image charge $q'$ outside the sphere at the position $\vec y'$, the potential due to the charges $q$ and $q'$ is:
+\[ \Phi(\vec x)=\frac{q/4\pi\varepsilon_0}{|\vec x-\vec y|}+\frac{q'/4\pi\varepsilon_0}{|\vec x-\vec y'|} \]
+Let $\vec n$ be the unit vector in the direction $\vec x$ and $\vec n'$ in the direction $\vec y'$.\\
+The sphere is conducting and grounded, thus the potential vanishes at $|\vec x|=a$. Make $x$ out of the first term and $y'$ the second, the potential at $a$ is:
+\[ \Phi(x=a)=\frac{q/4\pi\varepsilon_0}{a|\vec n-\frac{y}{a}\vec n'|}+\frac{q'/4\pi\varepsilon_0}{y'|\vec n'-\frac{a}{y'}\vec n|}=0 \]
+We find
+\[ q'=-\frac{a}{y}q,\qquad y'=\frac{a^2}{y} \]
+The result is same as when the charge is outside the sphere.\\
+\[ \boxed{\Phi(\vec x)=\frac{q/4\pi\varepsilon_0}{|\vec x-\vec y|}-\frac{aq/4\pi y\varepsilon_0}{|\vec x-(\frac{a}{y})^2\vec y|}} \]\par
+(b). For the case that charge $q$ outside the sphere, the normal direction point inward the sphere, and we get $\vec E\cdot\vec n=\sigma/\varepsilon_0$. When $q$ inside the sphere, the normal direction outward and we have $-\vec E\cdot\vec n=\sigma/\varepsilon_0$.\par
+The induced charge density on the surface of sphere:
+\[
+  \boxed{\sigma=\varepsilon_0\frac{\partial\Phi}{\partial n}|_{x=a}=\frac{q}{4\pi a^2}\frac{a}{y}\frac{1-a^2/y^2}{(1+\frac{a^2}{y^2}-2\frac{a}{y}\cos\gamma)^{3/2}}}
+\]
+Also $\gamma$ is the angle between $\vec x$ and $\vec y$.\par
+(c).We can calculate the force on charge $q$ due to the induced charges by calculate the force between $q$ and the image charge $q'$ instead. Since $q$ and $q'$ have different sign, the image charge ``attract'' $q$ outward the sphere. So the direction of the force is the same as the normal direction $\vec n$. According to Coulomb's law,
+\[ \boxed{\vec F=\frac{1}{4\pi\varepsilon_0}\frac{q^2}{a^2}(\frac{a}{y})^3(1-\frac{a^2}{y^2})^{-2}\vec n} \]
+\pagebreak
+\section*{Jackson 2.3}
+(a).Set three image charges $\lambda_1$ at $(-x_0, y_0)$, $\lambda_2$ at $(-x_0,-y_0)$ and $\lambda_3$ at $(x_0,-y_0)$.\\
+Remove the conducting boundary, the potential in the x-y plane
+ \begin{align*}
+   \Phi(x,y)=&\frac{\lambda}{4\pi\varepsilon_0}\ln\frac{R^2}{(x-x_0)^2+(y-y_0)^2}+\frac{\lambda_1}{4\pi\varepsilon_0}\ln\frac{R^2}{(x+x_0)^2+(y-y_0)^2}\\
+             &+\frac{\lambda_2}{4\pi\varepsilon_0}\ln\frac{R^2}{(x+x_0)^2+(y+y_0)^2}+\frac{\lambda_3}{4\pi\varepsilon_0}\ln\frac{R^2}{(x-x_0)^2+(y+y_0)^2}
+ \end{align*}
+ The potential vanishes at the intersecting planes:
+ \begin{align*}
+   \Phi(0,y)=\frac{1}{4\pi\varepsilon_0}\ln(\frac{R^2}{x_0^2+(y-y_0)^2})^{\lambda+\lambda_1}+\frac{1}{4\pi\varepsilon_0}\ln(\frac{R^2}{x_0^2+(y+y_0)^2})^{\lambda_2+\lambda_3}=0\\
+   \Phi(x,0)=\frac{1}{4\pi\varepsilon_0}\ln(\frac{R^2}{(x-x_0)^2+y_0^2})^{\lambda+\lambda_3}+\frac{1}{4\pi\varepsilon_0}\ln(\frac{R^2}{(x+x_0)^2+y_0^2})^{\lambda_1+\lambda_2}=0
+  \end{align*}
+  To keep $\Phi=0$, we have
+ \[ \lambda+\lambda_1=0 \qquad \lambda_2+\lambda_3=0 \]
+ \[ \lambda+\lambda_3=0 \qquad \lambda_2+\lambda_1=0 \]
+ Thus,
+ \begin{align*}
+   \lambda_1=\lambda_3=-\lambda \qquad \lambda_2=\lambda
+ \end{align*}
+ So the potential in the first quadrant
+ \begin{empheq}[box=\fbox]{align*}
+   \Phi(x,y)=\frac{\lambda}{4\pi\varepsilon}(\ln\frac{R^2}{(x-x_0)^2+(y-y_0)^2}+\ln\frac{R^2}{(x+x_0)^2+(y+y_0)^2})\\-\frac{\lambda}{4\pi\varepsilon_0}(\ln\frac{R^2}{(x+x_0)^2+(y-y_0)^2}+\ln\frac{R^2}{(x-x_0)^2+(y+y_0)^2})
+ \end{empheq}\par
+ It's easy to find $\Phi=0$ when $x=0$ or $y=0$. The tangential electric field on the boundary
+ \begin{align*}
+   E_x=-\frac{\partial \Phi}{\partial x}|_{x=0}=\frac{\lambda}{4\pi\varepsilon_0}[(-2x_0+2x_0)/[x_0^2+(y-y_0)^2]+(2x_0-2x_0)/[x_0^2+(y+y_0)^2]]=0
+ \end{align*}
+ Similarly the tangential electric field vanishes when $y=0$.\par
+ (c).The charge density on the plane $y=0, x\geq 0$
+ \begin{align*}
+   \sigma=-\varepsilon_0\frac{\partial \Phi}{\partial y}|_{y=0}=\frac{\lambda}{4\pi}[\frac{-4y_0}{(x-x_0)^2+y^2}+\frac{4y_0}{(x+x_0)+y_0^2}]
+ \end{align*}
+ Integral the charge density along the +x-axis,
+ \begin{align*}
+   Q_x&=-\frac{\lambda y_0}{\pi}\int_0^\infty[\frac{1}{(x-x_0)^2+y_0^2}-frac{1}{(x+x_0)^2+y_0^2}]dx\\
+      &=-\frac{\lambda y_0}{\pi}[-\frac{\tan^{-1}(\frac{x_0-x}{y_0})}{y_0}+\frac{\tan^{-1}(\frac{x_0+x}{y_0})}{y_0}]|_0^\infty\\
+      &=-\frac{2\lambda}{\pi}\tan^{-1}(x_0/y_0)
+ \end{align*}
+ The total charge on the plane $y=0\ x\geq 0$,
+  \[ \boxed{Q_x=\frac{2\lambda}{\pi}\tan^{-1}\frac{x_0}{y_0}} \]\par
+  (d).
+ \pagebreak
+\section*{Jackson 2.7}\par
+(a).The Green function:
+\[ G(\vec x,\vec x')=\frac{1}{|\vec x-\vec x'|}+F(\vec x,\vec x') \]
+With Dirichlet boundary conditions on the plan $z'=0$, we have
+\[G(\vec x,\vec x')|_{z=0}=\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}+F(\vec x,\vec x')=0 \]
+\[ F(\vec x,\vec x')|=-\frac{1}{\sqrt{(x-x')^2+(y-y')^2+z^2}} \]
+\[\boxed{ G(\vec x,\vec x')=\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}-\frac{1}{\sqrt{(x-x')^2+(y-y')^2+z^2}}} \]\par
+(b).The potential for Dirichlet boundary conditions is:
+\begin{align*}
+  \Phi(\vec x)=\frac{1}{4\pi\varepsilon_0}\int_V\rho(\vec x')G(\vec x,\vec x')d^3x'-\frac{1}{4\pi}\oint_S\Phi(\vec x')\frac{\partial G}{\partial n'}da'
+\end{align*}
+The first term vanishes in free space for $\rho=0$. In cylindrical coordinate, the second integral on plane $z'=0$ can be written as
+ \begin{align*}
+   \Phi(\vec x)&=-\frac{1}{4\pi}\int_0^{2\pi}\int_0^\infty\Phi\frac{\partial G}{\partial n'}\rho' d\rho' d\varphi'\\
+               &=\frac{V}{4\pi}\int_0^{2\pi}\int_0^a\frac{\partial}{\partial z'}\frac{1}{\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos{(\varphi-\varphi')}+(z-z')^2}}-\frac{1}{\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos{(\varphi-\varphi')}+z^2}}\rho' d\rho' d\varphi'\\
+              &=\frac{V}{4\pi}\int_0^{2\pi}\int_0^{a}\frac{(z-z')}{(\rho^2+\rho'^2-2\rho\rho'\cos{(\varphi-\varphi')}+(z-z')^2)^{3/2}}-\frac{z}{(\rho^2+\rho'^2-2\rho\rho'\cos{(\varphi-\varphi')}+z^2)^{3/2}}\rho' d\rho' d\varphi'
+ \end{align*}
+ For $z'=0$,
+ \[\boxed{ \Phi(\vec x)==\frac{Vz}{2\pi}\int_0^{2\pi}\int_0^a\frac{\rho'}{(\rho^2+\rho'^2-2\rho\rho'\cos{(\varphi-\varphi')}+z^2)^{3/2}} d\rho' d\varphi'} \]\par
+ (c).When $\rho=0$,
+ \begin{align*}
+   \Phi(\vec x)&=\frac{Vz}{2\pi}\int_0^{2\pi}d\varphi'\int_0^a\frac{\rho'}{(\rho'^2+z^2)^{3/2}}d\rho'\\
+               &=Vz\int_0^a\frac{1}{2}(\rho'^2+z^2)^{-3/2}d\rho'^2\\
+               &=Vz(\rho'^2+z^2)^{-1/2}|^a_0\\
+               &=V(1-\frac{z}{\sqrt{a^2+z^2}})              
+ \end{align*}
+ The potential along the axis of the circle
+ \[ \boxed{\Phi=V(1-\frac{z}{\sqrt{a^2+z^2}})} \] \par
+(d).
+
+\end{document}

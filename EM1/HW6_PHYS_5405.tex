@@ -1,0 +1,205 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW6, Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\maketitle
+
+\section*{Jackson 3.16(b)}
+\[ \nabla^2\frac{1}{|\vec x-\vec x'|}=-4\pi\delta(\vec x-\vec x')=-\frac{4\pi}{\rho}\delta(\rho-\rho')\delta(\phi-\phi')\delta(z-z') \]
+Expand,
+\begin{align*}
+  \frac{1}{\rho}\delta(\rho-\rho')=\int_0^\infty kJ_m(k\rho)J_m(k\rho')dk\\
+  \delta(\phi-\phi')=\frac{1}{2\pi}\sum_{m=-\infty}^{\infty} e^{im(\phi-\phi')}
+\end{align*}
+Let,
+\begin{align*}
+  \frac{1}{|\vec x-\vec x'|}=-2\sum_{m=-\infty}^\infty\int_0^{\infty}dk e^{im(\phi-\phi')}kJ_m(k\rho)J_m(k\rho')g(k,z,z')
+\end{align*}
+The Laplace equation then becomes,
+\begin{align*}
+  &-2\sum_{m=-\infty}^\infty\int_0^\infty  dk[\frac{1}{\rho}\pd{}{\rho}\rho\pd{}{\rho}+\frac{1}{\rho^2}\pd{^2}{\phi^2}+\pd{^2}{z^2}]e^{im(\phi-\phi')}kJ_m(k\rho)J_m(k\rho')g(k,z,z')\\
+  =&-2\sum_{m=-\infty}^\infty\int_0^\infty  dk[(\frac{1}{\rho}\pd{}{\rho}\rho\pd{J_m(k\rho)}{\rho}-\frac{m^2}{\rho^2}J_m(k\rho))g(k,z,z')\\
+  &+J_m(k\rho)\pd{^2g(k,z,z')}{z^2}]e^{im(\phi-\phi')}kJ_m(k\rho')\\
+  =&-\frac{4\pi}{\rho}\delta(\rho-\rho')\delta(\phi-\phi')\delta(z-z')
+\end{align*}
+Since $J_m(k\rho)$ satisfies the Bessel equation, we find
+\[ \frac{1}{\rho}\pd{}{\rho}\rho\pd{J_m(k\rho)}{\rho}-\frac{m^2}{\rho^2}J_m(k\rho)=-k^2J_m(k\rho) \]
+Insert to the equation above,
+\begin{align*}
+  &-2\sum_{m=-\infty}^\infty\int_0^\infty  dk[\pd{^2g(k,z,z')}{z^2}-k^2g(k,z,z')] e^{im(\phi-\phi')}kJ_m(k\rho)J_m(k\rho')\\
+  =&-\frac{4\pi}{\rho}\delta(\rho-\rho')\delta(\phi-\phi')\delta(z-z')
+\end{align*}
+It demands,
+\begin{align*}
+  \pd{^2g(k,z,z')}{z^2}-k^2g(k,z,z')=-4\pi\delta(z-z')
+\end{align*}
+When $z\neq z'$, the general solution is given by,
+\begin{align*}
+  g(z,z')= Ae^{k(z-z')}+Be^{-k(z-z')}
+\end{align*}
+When $z>z'$, we want $g(z,z')$ vanishes at $z\rightarrow\infty$, and when $z<z'$ we want $g(z,z')$ vanishes at $z\rightarrow -\infty$, hence we have
+\[ A=0\ when\ z>z',\qquad B=0\ when\ z<z' \]
+At $z=z'$, $e^{-k(z-z')}=e^{k(z-z')}=1$, we have
+\[ A=B \]
+The general solution can be writen as
+\[ g(z,z')=Ae^{-k(z_>-z_<)} \]
+Now consider the discontinuity of the first derivative at $z=z'$,
+\[ \pd{g}{z}|_{z=z'+}-\pd{g}{z}|_{z=z'-}=-4\pi \]
+\[ A=\frac{2\pi}{k} \]
+Finally we have,
+\[ \boxed{\frac{1}{|\vec x-\vec x'|}=\sum_{m=-\infty}^{\infty}\int_0^{\infty}dk e^{im(\phi-\phi')}J_m(k\rho)J_m(k\rho')e^{-k(z_>-z_<)}} \]\par
+\pagebreak
+
+\section*{Jackson 3.16(c)}
+
+When $\rho'=0$ and $z'=0$,
+\[ \frac{1}{|\vec x-\vec x'|}=\frac{1}{\sqrt{\rho^2+z^2}} \]
+which has azimuthal symmetry. $m=0$.
+We have
+\[ J_0(0)=1 \]
+\[e^{-k(z_>-z_<)}=e^{-k|z|} \]
+\begin{align*}
+  \frac{1}{\sqrt{\rho^2+z^2}}=\int_0^{\infty} e^{-k|z|}J_0(k\rho)dk
+\end{align*}\par
+Let $z=z'$ and $\phi'=0$, replace $R^2=\rho^2+\rho'^2-\rho\rho'\cos\phi$, and we find
+\begin{align*}
+  \frac{1}{|\vec x-\vec x'|}=\frac{1}{\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos\phi}}=\int_0^\infty J_0(k\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos\phi}) dk\\
+  =\int_0^\infty\sum_{m=-\infty}^{\infty}e^{im\phi}J_m(k\rho)J_m(k\rho')dk
+\end{align*}
+Thus,
+\[ J_0(k\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos\phi})=\sum_{m=-\infty}^{\infty}J_m(k\rho)J_m(k\rho')dk\]
+The generating function of $J_n(x)$ is
+\[ e^{\frac x2(z-z^{-1})}=\sum_{n=-\infty}^{\infty}J_n(x)z^n \]
+In this case, $z=ie^{i\phi}$ and $x=k\rho$, we get
+\begin{align*}
+  e^{\frac{k\rho}{2}(ie^{i\phi}-\frac{1}{ie^{i\phi}})}=e^{ik\rho\cos\phi}=\sum_{m=-\infty}^{\infty}i^m e^{im\phi} J_m(k\rho)
+\end{align*}
+\pagebreak
+
+\section*{Jackson 3.16(d)}
+
+From the last result,
+ \[ e^{ix\cos\phi}=\sum_{m=-\infty}^{\infty}i^m e^{im\phi} J_m(x) \]
+ Multiply both sides by $e^{-im\phi'}$ and integral from $0$ to $2\pi$, we get
+\begin{align*}
+   \int_0^{2\pi} e^{ix\cos\phi-im\phi'} d\phi &= \sum_{m=-\infty}^{\infty}\int_0^{2\pi} i^m e^{im(\phi-\phi')}J_m(x) d\phi\\
+                                              &=2\pi\int_0^{2\pi}i^m J_m(x)\delta(\phi-\phi')d\phi
+\end{align*}
+The right side is nontrival only when $\phi=\phi'$, in this case,
+\[ J_m(x)=\frac{1}{2\pi i^m}\int_0^{2\pi}e^{ix\cos\phi-im\phi}d\phi \]
+\pagebreak
+
+\section*{Jackson 3.17(a)}
+
+Since the green function vanishes at $z=0$ and $z=L$, we can write,
+\[ G(\vec x,\vec x')=\sum_{m,n}g(\rho,\rho')e^{im(\phi-\phi')}\sin(\frac{n\pi z}{L})\sin(\frac{n\pi z'}{L}) \]
+The green fucntion satisfies,
+\[[\frac{1}{\rho}\pd{}{\rho}\rho\pd{}{\rho}+\frac{1}{\rho^2}\pd{^2}{\phi^2}+\pd{^2}{z^2}]G(\rho,\rho';\phi,\phi';z,z')=-\frac{4\pi}{\rho}\delta(\rho-\rho')\delta(\phi-\phi')\delta(z-z') \]
+Since,
+\[\delta(\phi-\phi')=\frac{1}{2\pi}\sum_{m=-\infty}^{\infty}e^{im(\phi-\phi')} \]
+\[\delta(z-z')=\frac{2}{L}\sum_{n=1}^\infty \sin(n\pi z/L)\sin(n\pi z'\L) \]
+We want
+\[ [\frac{1}{\rho}\pd{}{\rho}\rho\pd{}{\rho}-\frac{m^2}{\rho^2}-(\frac{n\pi}{L})^2]g(\rho,\rho')=-\frac{4}{L\rho}\delta(\rho-\rho') \]
+which is a modified Bessel equation. The solution for $g(\rho,\rho')$ satisfies,
+\[ g_<=g_>\quad when\ \rho=\rho'\]
+\[ \frac{dg}{d\rho}|_{\rho=\rho+}-\frac{dg}{d\rho}|_{\rho=\rho-}=-\frac{4}{n\pi\rho} \]
+From the Wronskian formula,
+\[ I_v(\rho)K_v'(\rho)-I_v'(\rho)K_v(\rho)=\frac{-L}{n\pi\rho} \]
+which gives the solution
+\[ g(\rho,\rho')=\frac{4}{L}I_m(\frac{n\pi\rho_<}{L})K_m(\frac{n\pi\rho'}{L})\]
+Finally,
+\[ \boxed{G(\vec x,\vec x')=\frac{4}{L}\sum_{n=1}^{\infty}\sum_{m=-\infty}^\infty e^{im(\phi-\phi')}\sin(\frac{n\pi z}{L})\sin(\frac{n\pi z'}{L})I_m(\frac{n\pi\rho}{L})K_m(\frac{n\pi\rho'}{L})}\]
+\pagebreak
+
+\section*{Jackson 3.7(b)}
+
+Expand the Green fucntion in terms of $\rho$ and $\phi$,
+\[ G(\vec x,\vec x')=\sum_{m=-\infty}^\infty\int_0^{\infty}dk kg(k,z,z')e^{im(\phi-\phi')}J_m(k\rho)J_m(k\rho') \]
+As showed in 3.6(b), we have
+\[ \pd{^2g(z,z')}{z^2}-k^2g(z,z')=-2\delta(z-z') \]
+The boudary conditions require $g(z,z')=0$ at $z=0$ and $z=L$. When $z<z'$,
+\[ g(z,z')=A\sinh(kz) \]
+When $z>z'$,
+\[ g(z,z')=B\sin[k(L-z)] \]
+And
+\[ A\sin(kz')=B\sin[k(L-z')] \]
+\[ -B\cosh[k(L-z')]-A\cosh(kz')=-\frac{2}{k}\]
+Then we can solve,
+\[ A=\frac{2\sinh[k(L-z')]}{2\sinh(kL)}\qquad B=\frac{2\sinh(kz')}{k\sinh(kL)}\]
+and write $g(z,z')$ as
+\[ g(z,z')=\frac{2\sinh(kz_<)\sin[k(L-z_>)]}{k\sinh(kL)} \]
+The Green fucntion,
+\[ \boxed{G(\vec x,\vec x')=2\sum_{m=-\infty}^\infty\int_0^{\infty}dk e^{im(\phi-\phi')}J_m(k\rho)J_m(k\rho')\frac{\sinh(kz_<)\sin[k(L-z_>)]}{\sinh(kL)}}\]
+\pagebreak
+
+\section*{Jackson 4.2}
+
+The potential caused by a dipole is
+\begin{align*}
+  \Phi(\vec x)&=\frac{\vec p\cdot\vec x}{4\pi\varepsilon_0|\vec x-\vec x'|^3}\\
+              &=-\frac{\vec p}{4\pi\varepsilon_0}\nabla\frac{1}{|\vec x-\vec x'|}\\
+              &=\frac{1}{4\pi\varepsilon_0}\int\frac{\rho(\vec x')}{|\vec x-\vec x'|}d^3x'
+\end{align*}
+We want
+\[ \int\frac{\rho(\vec x')}{|\vec x-\vec x'|}d^3x'=-\vec p\cdot\nabla\frac{1}{|\vec x-\vec x'|} \]
+\begin{align*}
+  [-\vec p\cdot\nabla\frac{1}{|\vec x-\vec x'|}]|_{x=x_0}&=-\int\delta(\vec x-\vec x_0)\vec p\cdot\nabla\frac{1}{|\vec x-\vec x'|}d^3x=-\int\frac{\rho(\vec x)}{|\vec x-\vec x_0|}d^3x
+\end{align*}
+Integral by parts we find,
+\begin{align*}
+  \int\frac{1}{|\vec x-\vec x_0|}\vec p\cdot\nabla(\delta(\vec x-\vec x_0))d^3x=-\int\frac{\rho(\vec x)}{|\vec x-\vec x_0|}d^3x
+\end{align*}
+Hence we have
+\[ \boxed{\rho(x)=-\vec p\cdot\nabla\delta(\vec x-\vec x_0)}\]
+Similarly, the electtrostatic energy of a dipole is
+\[ W=-\vec p\cdot E(0)=\vec p\cdot\nabla\Phi(0)=\int\rho(\vec x)\Phi(\vec x)d^3x \]
+\begin{align*}
+  \int\delta(\vec x-\vec x_0)\vec p\cdot\nabla\Phi(\vec x)d^3&=-\int\Phi(\vec x)\vec p\cdot\nabla(\delta(\vec x-\vec x_0))d^3x\\
+                                                             &=\int\rho(\vec x)\Phi(\vec x)d^3x
+\end{align*}
+Hence,
+\[ \boxed{\rho(x)=-\vec p\cdot\nabla\delta(\vec x-\vec x_0)}\]
+\pagebreak
+
+\section*{Jackson 4.7(a)}
+
+\begin{align*}
+  \rho(\vec r)&=\frac{1}{64\pi}r^2e^{-r}\sin^2\theta\\
+              &=\frac{1}{96\pi}r^2e^{-r}[P_0(\cos\theta)-P_2(\cos\theta)]
+\end{align*}
+The charge distribution has azimuthal symmetry, all $m\neq0$ terms vanishes.
+\[ Y_{l0}=\sqrt{\frac{2l+1}{4\pi}}P_l(\cos\theta) \]
+The multipole expansions
+\begin{align*}
+  \Phi(\vec r)&=\frac{1}{96\pi}\frac{1}{4\pi\varepsilon_0}\sum_{l}[\int_0^{2\pi}d\phi \int_0^\infty\int_{-1}^{1}P_l(\cos\theta')r'^{l+4}e^{-r}[P_0(\cos\theta)-P_2(\cos\theta)]drd\cos\theta]\frac{P_l(\cos\theta)}{r^{l+1}}\\
+              &=\frac{1}{48}\frac{1}{4\pi\varepsilon_0}[\Gamma(l+5)(2\delta_{l0}-\frac 25 \delta_{l2})]\frac{P_l(\cos\theta)}{r^{l+1}}\\
+              &=\frac{1}{4\pi}[\frac{P_0(\cos\theta)}{r}-6\frac{P_2(\cos\theta)}{r^3}]
+\end{align*}
+
+\section*{Jackson 4.7(b)}
+Under azimuthal symmetry, the Green function can be expanded in
+\[ G(\vec x, \vec x')=\sum_{l=0}^\infty\frac{r_<^l}{r_>^{l+1}}P_l(\cos\theta)P_l(\cos\theta') \]
+The potential at any point,
+\begin{align*}
+  \Phi(\vec x)&=\frac{1}{48}\frac{1}{4\pi\varepsilon_0}\int_0^\infty r'^4e^{-r'}\frac{r_<^l}{r_>^{l+1}}dr'\int_{-1}^{1}[P_0(\cos\theta')-P_2(\cos\theta')]P_l(\cos\theta')P_l(\cos\theta)d\cos\theta'\\
+              &=\frac{1}{48}\frac{1}{4\pi\varepsilon_0}[\frac{1}{r^{l+1}}\int_0^r r'^{l+4}e^{-r'}dr'+r^l\int_0^\infty \frac{r'^3}{r'^l}e^{-r'}dr'][2\delta_{l0}P_0(\cos\theta)-\frac{2}{5}\delta_{l2}P_2(\cos\theta)]\\
+              &=\frac{1}{24}\frac{1}{4\pi\varepsilon_0}[\frac{P_0(\cos\theta)}{r}(24-e^{-r}(24+18r+6r^2+r^3))\\
+              &-\frac{P_2(\cos\theta)}{r^3}(144-e^{-r}(144+144r+72r^2+24r^3+6r^4+r^5))]
+\end{align*}
+When $r\rightarrow\infty$, $e^{-r}\rightarrow 0$, the potential above reduces to the form in (a). When $r\rightarrow 0$, expand
+\[e^{-r}=1-r+\frac{1}{2}r^3-\frac{1}{6}r^3+\frac{1}{24}r^4-\frac{1}{120}r^5...\]
+Insert to the potential and calculate to the $r^2$ terms,
+\begin{align*}
+  \Phi(\vec x)&=\frac{1}{24}\frac{1}{4\pi\varepsilon_0}[\frac{1}{r}(6r+\frac{r^5}{20}+...)-\frac{P_2(\cos\theta)}{r^3}(\frac{r^5}{5}+\frac{r^6}{5}...)]\\
+              &=\frac{1}{4\pi\varepsilon_0}[\frac{1}{4}-\frac{r^2}{120}P_2(\cos\theta)]
+\end{align*}
+% \bibliographystyle{abbrv}
+% \bibliography{refs}
+\end{document}

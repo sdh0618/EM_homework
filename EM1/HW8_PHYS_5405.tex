@@ -1,0 +1,232 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW8, Classical Mechanics, Fall 2016}
+\author{Deheng Song}
+\maketitle
+
+\section*{Jackson 5.8(a)}
+The vector potential,
+\begin{align*}
+  \vec A_\phi(\rho,\theta)&=\frac{\mu_0}{4\pi}\int\frac{\hat\phi J(\rho',\theta')}{|\vec x-\vec x'|}d^3x'
+\end{align*}
+By azimuthal symmetry only the $\hat\phi$ component of $\vec A$ left,
+\begin{align*}
+  A_\phi=\frac{\mu_0}{4\pi}\int\frac{\cos\phi'J(r',\theta')}{|\vec x-\vec x'|}r'^2dr'd\Omega'
+\end{align*}
+Expanding $|\vec x-\vec x'|^{-1}$ in terms of spherical harmonic,
+\begin{align*}
+  A_\phi=\frac{\mu_0}{4\pi}\operatorname{Re}\sum_{l,m}\frac{Y_{lm}(\theta,0)}{2l+1}\int dr' d\Omega' J(r',\theta') r'^2 e^{i\phi'}\frac{r_<^l}{r_>^{l+1}}Y^*_{lm}(\theta',\phi')
+\end{align*}
+Only the $m=1$ will contribute to the sum.
+\begin{align*}
+  Y_{l,1}(\theta,0)=\sqrt{\frac{2l+1}{4\pi l(l+1)}}P_l^1(\cos\theta)
+\end{align*}
+\begin{align*}
+  A_\phi=\frac{\mu_0}{4\pi}\sum_{l}\frac{P_l^1(\cos\theta)}{l(l+1)}\int dr'd\cos\theta'd\phi'\frac{r_<^l}{r_>^{l+1}}P_l^1(\cos\theta')J(r',\theta')
+\end{align*}
+In the interior, we have $r<r'$, hence $r_<=r$, $r_>=r'$. We can write the vector potential as
+\begin{align*}
+  A_\phi(r,\theta)=-\frac{\mu_0}{4\pi}\sum_{l}m_lr^lP_l^1(\cos\theta)
+\end{align*}
+And for outside the current distribution,
+\begin{align*}
+  A_\phi(r,\theta)=-\frac{\mu_0}{4\pi}\sum_{l}\mu_lr^{-l-1}P_l^1(\cos\theta)
+\end{align*}
+
+\section*{Jackson 5.8(b)}
+
+Comparing the results in (a), it's easy to find
+\begin{align*}
+  m_l=\frac{-1}{l(l+1)}\int d^3x r^{-l-1}P_l^1(\cos\theta)J(r,\theta)
+\end{align*}
+\begin{align*}
+  \mu_l=\frac{-1}{l(l+1)}\int d^3x r^lP_l^1(\cos\theta)J(r,\theta)
+\end{align*}
+\pagebreak
+\section*{Jackson 5.10(a)}
+
+The current density $\vec J$ has only a component in the $\phi$ direction,
+\begin{align*}
+  J_\phi=I\delta(z')\delta(\rho'-a)
+\end{align*}
+\begin{align*}
+  A_\phi(r,\theta)&=\frac{\mu_0I}{4\pi}\int \rho' d\rho'd\phi'dz'\frac{\cos\phi'\delta(z')\delta(\rho'-a)}{|\vec x-\vec x'|}
+\end{align*}
+Expanding $|\vec x-\vec x'|^{-1}$ in terms of Bessel functions, with $\phi=0$,
+\begin{align*}
+  A_\phi(r,\theta)=&\frac{\mu_0I}{4\pi}\sum_{m=-\infty}^{\infty}\operatorname{Re}\int \rho'd\rho'd\phi'dz'\frac{2}{\pi}\int_0^\infty dk e^{i\phi'}\delta(z')\delta({\rho'-a})e^{-im\phi'}\cos[k(z-z')]I_m(k\rho_<)K_m(k\rho_>)\\
+  =&\frac{\mu_0I}{4\pi}\int_0^{\infty}dk[\frac{2}{\pi}\sum_{m=-\infty}^{\infty}\int_0^{2\pi}d\phi'e^{i\phi'}e^{-im\phi'}]\int_0^\infty\rho'\delta(\rho'-a)I_m(k\rho_<)K_m(k\rho_>)\int_{-\infty}^{\infty}cos[k(z-z')]\delta(z')
+\end{align*}
+Here,
+\begin{align*}
+  \frac{2}{\pi}\sum_{m=-\infty}^{\infty}\int_0^{2\pi}d\phi'e^{i\phi'}e^{-im\phi'}=2\pi\delta_{m,1}
+\end{align*}
+Only the $m=1$ remains in the expansion,
+\begin{align*}
+  A_\phi(r,\theta)=\frac{\mu_0Ia}{\pi}\int_0^{\infty}dk I_1(k\rho_<)K_1(k,\rho_>)\cos(kz)
+\end{align*}
+Here $\rho_<$($\rho_>$) is the smaller (larger) of $a$ and $\rho$.
+
+\section*{Jackson 5.10(b)}
+
+With the expansion,
+\begin{align*}
+  \frac{1}{|\vec x-\vec x'|}=\sum_{m=-\infty}^{\infty}\int_0^{\infty}dk e^{im(\phi-\phi')}J_m(k\rho)J_m(k\rho')e^{-k(z_>-z_<)}
+\end{align*}
+We can write the $\hat \phi$ component of $\vec A$ as,
+\begin{align*}
+  A_\phi(r,\theta)&=\frac{\mu_0I}{4\pi}\sum_{m=-\infty}^{\infty}\int_0^{\infty}dk\int_0^{2\pi}\operatorname{Re}e^{i\phi'}e^{-im\phi'}\int_0^{\infty}\rho'J_m(k\rho)J_m(k\rho')\delta(\rho'-a)d\rho'\int_{-\infty}^{\infty}e^{-k(z_>-z_<)}\delta(z')dz'\\
+                  &=\frac{\mu_0Ia}{4\pi}2\pi\int_0^{\infty}dkJ_1(k\rho)J_1(ka)e^{-k|z|}\\
+                  &=\frac{\mu_0Ia}{2}\int_0^{\infty}dk e^{-k|z|}J_1(ka)J_1(k\rho)
+\end{align*}
+\pagebreak
+\section*{Jackson 5.13}
+
+Choose the diameter that the sphere is rotated about as z-axis, the current density has only $\hat\phi$ component.
+\begin{align*}
+  \vec J&=\rho\cdot v\hat\phi\\
+        &=\sigma\delta(r-a)\omega r\sin\theta\hat\phi
+\end{align*}
+The $\hat\phi$ component of $\vec A$,
+\begin{align*}
+  A(r,\theta)=\frac{\mu_0\sigma\omega}{4\pi}\int r'^3dr'd\Omega'\frac{\cos\phi'\sin\theta'\delta(r'-a)}{|\vec x-\vec x'|}
+\end{align*}
+Expanding $|\vec x-\vec x'|^{-1}$ in terms of spherical harmonic,
+\begin{align*}
+  A_\phi=\frac{\mu_0\sigma\omega}{4\pi}\operatorname{Re}\sum_{l,m}\frac{Y(\theta,0)}{2l+1}\int r'^3dr'd\Omega'\sin\theta'\delta(r'-a)e^{i\phi'}\frac{r_<^l}{r_>^{l+1}}Y^*_{lm}(\theta',\phi')
+\end{align*}
+Only $m=1$ remains,
+\begin{align*}
+  A_\phi&=\frac{\mu_0\sigma\omega a^3}{2}\sum_{l=1}^{\infty}\frac{Y_{l,1}(\theta,0)}{2l+1}\frac{r_<^l}{r_>^{l+1}}\int_0^{\pi}\sin^2\theta'Y^*_{l,1}(\theta',0)d\theta'\\
+        &=-\frac{\mu_0\sigma a^3}{2}\sum_{l=1}^{\infty}\frac{P^1_l(\cos\theta)}{l(l+1)}\frac{r_<^l}{r_>^{l+1}}\int_{-1}^{1}P^1_1(\cos\theta')P_l^1(\cos\theta')d\cos\theta'
+\end{align*}
+Now only $l=1$ remains,
+\begin{align*}
+  A_\phi=\frac{\mu_0\sigma\omega a^3}{3}\frac{r_<}{r_>^{2}}\sin\theta
+\end{align*}
+Here, $r_>=max\{r,a\}$ and $r_<=min\{r,a\}$.
+Inside the sphere, $r_>=a$ and $r_<=r$,
+\begin{align*}
+\vec  A_{in}&=\frac{\mu_0\sigma\omega a^3}{3}\frac{r}{a^2}\sin\theta\hat\phi\\
+        &=\frac{\mu_0\sigma\omega a}{3}r\sin\theta\hat\phi
+\end{align*}
+Outside the sphere, $r_>=r$ and $r_<=a$,
+\begin{align*}
+\vec  A_{out}&=\frac{\mu_0\sigma\omega a^3}{3}\frac{a}{r^2}\sin\theta\hat\phi\\
+  &=\frac{\mu_0\sigma\omega a^4}{3}\frac{\sin\theta}{r^2}\hat\phi
+\end{align*}
+The magnetic induction,
+\begin{align*}
+  \vec B=\nabla\times\vec A=\frac{1}{r\sin\theta}\frac{\partial}{\partial\theta}(\sin\theta A_\phi)\hat r-\frac{1}{r}\frac{\partial}{\partial r}(rA_\phi)\hat\theta
+\end{align*}
+\begin{align*}
+  B_{in}=\frac{2\mu_0\sigma\omega a}{3}\cos\theta\hat r-\frac{2\mu_0\sigma\omega a}{3}\sin\theta\hat\theta
+\end{align*}
+\begin{align*}
+  B_{out}=\frac{2\mu_0\sigma\omega a^4}{3r^3}\cos\theta\hat r+\frac{\mu_0\sigma\omega a^4}{3r^3}\sin\theta\hat\theta
+\end{align*}
+\pagebreak
+\section*{Jackson 5.17(a)}
+
+Replace the induced surface current density with an image current density $\vec J^*(x)$. In the region of  $z>0$,
+\begin{align*}
+  \vec B=\frac{\mu_0}{4\pi}\int\frac{[\vec J(x)+\vec J^*(x)]\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}d^3x
+\end{align*}
+When $r<0$, consider the magnetic induction is due to a current distribution $\lambda\vec J(x)$,
+\begin{align*}
+  \vec B=\frac{\mu_0\mu_r\lambda}{4\pi}\int\frac{\vec J(x)\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}d^3x
+\end{align*}
+We consider the boundary conditions at $z=0$,
+\begin{align*}
+  (\vec B_2-\vec B_1)\cdot\hat n=0\qquad \hat n\times(\vec H_2-\vec H_1)=\vec K
+\end{align*}
+Since we don't have free surface current density, $\vec K=0$.
+\begin{align*}
+  [\int \frac{[\vec J(x')+\vec J^*(x')]\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}d^3x']\cdot\hat z=[\mu_r\lambda\int\frac{\vec J(x')\times(\vec x-\vec x')}{|\vec x-\vec x'}d^3x']\cdot\hat z
+\end{align*}
+This can be hold when
+\begin{align*}
+  [\vec J(x)+\vec J^*(x)]\times(\vec x-\vec x')\cdot\hat z=\mu_r\lambda\vec J(x)\times(\vec x-\vec x')\cdot\hat z
+\end{align*}
+\begin{align*}
+  (J_x+J_x^*)(y-y')-(J_y+J^*_y)(x-x')=\mu_r\lambda[J_x(y-y')-J_y(x-x')]
+\end{align*}
+And for magnetic field $\vec H$,
+\begin{align*}
+  \hat z\times[\int\frac{[\vec J(x')+\vec J^*(x')]\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}]=\lambda\hat z\times[\frac{\vec J(x')\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}]
+\end{align*}
+\begin{align*}
+  -(J_y-J^*_y)z'-(J_z+J^*_z)(x-x')=\lambda[-J_yz'-J_z(x-x')]\\
+  (J_z+J_z^*)(x-x')+(J_x-J_x^*)z'=\lambda[J_z(x-x')+J_xz']
+\end{align*}
+These lead to
+\begin{align*}
+  J_x^*=(1-\lambda)J_x,\quad J_y^*=(1-\lambda)J_y,\quad J_z=-(1-\lambda)J_z
+\end{align*}
+\begin{align*}
+  \lambda=\frac{2}{\mu_r+1}\qquad (1-\lambda)=\frac{\mu_r-1}{\mu_r+1}
+\end{align*}
+
+\section*{Jackson 5.17(b)}
+
+The magnetic induction in $z<0$ is
+\begin{align*}
+  \vec B=\frac{\mu_0\mu_r\lambda}{4\pi}\int\frac{\vec J(x)\times(\vec x-\vec x')}{|\vec x-\vec x'|^3}d^3x'
+\end{align*}
+If we consider it's due to a current distribution in a medium of unit relative permeability, the current density
+\begin{align*}
+  \vec J'(x)=\mu_r\lambda \vec J(x)=\frac{2\mu_r}{\mu_r+1}\vec J(x)
+\end{align*}
+\pagebreak
+\section*{Jackson 5.19(a)}
+
+Use magnetic scalar potential in cylindrical coordinates,
+\begin{align*}
+  \vec M=M_0\hat z\\
+  \sigma_M=\vec n\cdot \vec M
+\end{align*}
+The surface magnetic charge density $\sigma_M=M_0$ at the top of the cylinder and $-M_0$ at the bottom.
+\begin{align*}
+  \rho_M=M_0[\delta(z-\frac{L}{2})-\delta(z+\frac{L}{2})]
+\end{align*}
+The scalar potential
+\begin{align*}
+  \Phi_M(\rho,z)&=\frac{M_0}{4\pi}\int d^3x\frac{\delta(z'-L/2)-\delta(z'+L/2)}{|\vec x-\vec x'|}\\
+                &=\frac{M_0}{4\pi}\int d^3x\frac{\delta(z'-L/2)-\delta(z'+L/2)}{\sqrt{\rho^2+\rho'^2-2\rho\rho'\cos(\phi-\phi')}}
+\end{align*}
+On the axis, $\rho=0$,
+\begin{align*}
+  \Phi_M(0,z)&=\frac{M_0}{2}\int_0^a[\frac{1}{\sqrt{\rho'^2+(z-L/2)^2}}-\frac{1}{\sqrt{\rho'^2+(z+L/2)^2}}]\rho'd\rho'\\
+             &=\frac{M_0}{2}[\sqrt{\rho'^2+(z-L/2)^2}|_0^a-\sqrt{\rho'^2+(z+L/2)^2}|_0^a]\\
+             &=\frac{M_0}{2}[\sqrt{a^2+(z-L/2)^2}-\sqrt{a^2+(z+L/2)^2}-\sqrt{(z-L/2)^2}+\sqrt{(z+L/2)^2}]
+\end{align*}
+The magnetic field $\vec H$,
+\begin{align*}
+  \vec H=-\nabla\Phi_M=-\frac{\partial \Phi_M}{\partial z}\hat z
+\end{align*}
+Inside the cylinder,
+\begin{align*}
+  \vec H_{in}=\frac{-M_0}{2}[\frac{z-L/2}{\sqrt{a^2+(z-L/2)^2}}-\frac{z+L/2}{\sqrt{a^2+(z+L/2)^2}}+2]\hat z
+\end{align*}
+Out side the cylinder,
+\begin{align*}
+  \vec H_{out}=\frac{-M_0}{2}[\frac{z-L/2}{\sqrt{a^2+(z-L/2)^2}}-\frac{z+L/2}{\sqrt{a^2+(z+L/2)^2}}]\hat z
+\end{align*}
+The magnetic induction,
+\begin{align*}
+  \vec B=\mu_0\vec H+\mu_0\vec M
+\end{align*}
+Inside, $\vec M=M_0\hat z$; outside, $\vec M=0$,
+\begin{align*}
+  \vec B=-\frac{\mu_0M_0}{2}[\frac{z-L/2}{\sqrt{a^2+(z-L/2)^2}}-\frac{z+L/2}{\sqrt{a^2+(z+L/2)^2}}]\hat z
+\end{align*}
+% \bibliographystyle{abbrv}
+% \bibliography{refs}
+\end{document}

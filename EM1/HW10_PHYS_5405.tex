@@ -1,0 +1,372 @@
+\documentclass{article}
+\usepackage[top=1.5cm,bottom=2cm,left=3cm,right=3cm]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW10, Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\maketitle
+
+\section*{Jackson 6.2(a)}
+
+The charge density for a point charge,
+\begin{align*}
+  \rho=q\delta[\vec x'-\vec r_0(t')]=q\delta[\vec x'-\vec r_0(t-\frac{|\vec x-\vec x'|}{c})]
+\end{align*}
+Let,
+\begin{align*}
+  g(\vec x')=\vec x'-\vec r_0(t-\frac{|\vec x-\vec x'|}{c})
+\end{align*}
+\begin{align*}
+  \int d^3x'\delta[g(\vec x)]=\frac{1}{|g'(\vec x)|}
+\end{align*}
+\begin{align*}
+  g'(\vec x)&=\frac{dg(\vec x')}{d\vec x'}=\frac{d\vec x'}{d\vec x'}-\frac{d\vec r_0(t')}{d\vec x'}\\
+            &=1-\frac{d\vec r_0}{dt'}\frac{d(t-|\vec x-\vec x'|/c)}{d\vec x'}\\
+            &=1+\frac{1}{c}\vec v\cdot\frac{d|\vec x-\vec x'|}{d\vec x'}\\
+            &=1-\frac{\vec v\cdot\hat R}{c}=\kappa
+\end{align*}
+Thus,
+\[ \boxed{\int d^3x'\delta[\vec x'-\vec r_0(t')]=\frac{1}{\kappa}}\]
+\pagebreak
+
+\section*{Jackson 6.2(b)}
+
+Starting from the Jefimenko's generalizations of the Coulomb and Biot-Savart law,
+\begin{align*}
+  \vec E(\vec x,t)&=\frac{1}{4\pi\varepsilon_0}\int d^3x'\{\frac{\hat R}{R^2}[\rho(\vec x',t')]_{ret}+\frac{\hat R}{cR}[\pd{\rho(\vec x',t')}{t'}]_{ret}-\frac{1}{c^2R}[\pd{\vec J(\vec x',t)}{t'}]_{ret} \}\\
+  \vec B(\vec x,t)&=\frac{\mu_0}{4\pi}\int d^3x'\{[\vec J(\vec x',t')]_{ret}\times\frac{\hat R}{\vec R^2}+[\pd{\vec J(\vec x',t')}{t'}]_{ret}\times\frac{\hat R}{cR} \}
+\end{align*}
+While,
+\begin{align*}
+  \rho(\vec x',t')=q\delta[\vec x'-\vec r(t')],\quad \vec J(\vec x',t')=q\vec v(t')\delta[\vec x'-\vec r(t')]
+\end{align*}
+Using the result in part (a) and the property,
+\begin{align*}
+  [\pd{f(\vec x,t)}{t}]_{ret}=\pd{}{t}[f(\vec x',t')]_{ret}
+\end{align*}
+We can specialize the Jefimenko's generalizations,
+\begin{align*}
+  \int d^3x'\frac{\hat R}{R^2}[\rho(\vec x',t')]_{ret}=q\int d^3x'dt'\frac{\hat R}{R}G(\vec x,t;\vec x',t')\delta[\vec x-\vec r(t')]=q\int dt'\frac{\hat R}{\kappa R}G(\vec x,t;\vec x',t')=q[\frac{\hat R}{\kappa R^2}]_{ret}
+\end{align*}
+\begin{align*}
+  \int d^3x'\frac{\hat R}{cR}[\pd{\rho(\vec x',t')}{t'}]_{ret}=\pd{}{t}\{\int d^3x'\frac{\hat R}{cR}\rho(\vec x',t')\}=\frac{1}{c}\pd{}{t}[\frac{\hat R}{\kappa R}]_{ret}
+\end{align*}
+\begin{align*}
+  \int d^3x'{\frac{1}{c^2R}[\pd{\vec v\delta[\vec x'-\vec r(t')]}{t'}]}=\pd{}{t}\{\int d^3x'\frac{1}{c^2R}[\vec v\delta[\vec x'-\vec r(t')]]_{ret}\}=\frac{1}{c^2}\pd{}{t}[\frac{\vec v}{\kappa R}]_{ret}
+\end{align*}
+\begin{align*}
+  \int d^3x'[\vec v\delta(\vec x'-\vec r)]_{ret}\times\frac{\hat R}{R^2}=[\frac{\vec v\times\hat R}{\kappa R^2}]_{ret}
+y\end{align*}
+\begin{align*}
+  \int d^3x'[\pd{\vec v(t')\delta(\vec x'-\vec r)}{t'}]_{ret}\times\frac{\hat R}{cR}=\frac{1}{c}\pd{}{t}\int d^3x[\vec v(t')\delta(\vec x'-\vec r)]_{ret}\times\frac{\hat R}{R}=\frac{1}{c}\pd{}{t}[\frac{\vec v\times \hat R}{\kappa R}]_{ret}
+\end{align*}
+Combine all the terms together, we find
+\begin{align*}
+  \vec E=\frac{q}{4\pi\varepsilon_0}\{[\frac{\hat R}{\kappa R^2}]_{ret}+\frac{1}{c}\pd{}{t}[\frac{\hat R}{\kappa R}]_{ret}-\frac{1}{c^2}\pd{}{t}[\frac{\vec v}{\kappa R}]_{ret} \}
+\end{align*}
+\begin{align*}
+  \vec B=\frac{\mu_0 q}{4\pi}\{[\frac{\vec v\times\hat R}{\kappa R^2}]_{ret}+\pd{}{t}[\frac{\vec v\times\hat R}{\kappa R}]_{ret}\}
+\end{align*}
+
+\pagebreak
+
+\section*{Jackson 6.4 (a)}
+
+From the Ohm's law for a moving conductor,
+\[ \vec J=\sigma(\vec E+\vec v\times\vec B) \]
+In this case we have no current so it gives,
+\[\vec E=-\vec v\times\vec B\]
+Inside the sphere, the magnetic induction is given by $\vec B=\frac{2}{3}\mu_0M\hat z$.So we have,
+\begin{align*}
+  \vec E=-(\rho\omega\hat\phi)\times(\frac{2}{3}\mu_0M\hat z)=-\frac{2\rho\omega\mu_0M}{3}(\hat\phi\times\hat z)=-\frac{2\omega\mu_0M}{3}\vec \rho
+\end{align*}
+
+The charge density that cause the electric field is
+
+\[ \rho=\varepsilon_0\nabla\cdot\vec E=-\frac{\omega\mu_0M}{3}\frac{1}{\rho}\pd{}{\rho}\rho^2=-\frac{\omega m}{\pi c^2 R^2} \]
+
+where $1/c^2=\varepsilon_0\mu_0$ and $m=\frac{4\pi M R^3}{3}$.
+
+\section*{Jackson 6.4(b)}
+
+Because the sphere is electrically neutral, there is no monopole electric field outside.The electric field inside the sphere,
+\begin{align*}
+  \vec E_{in}=-\frac{2\omega\mu_0M}{3}\vec \rho==-\frac{2\omega\mu_0M}{3}(r\sin^2\theta\hat r+r\sin\theta\cos\theta\hat \theta)
+\end{align*}
+Without consider the monopole term, electric field outside is given by,
+\begin{align*}
+  \vec E&=-\nabla[\sum_{l=1}^{\infty}\frac{A_l}{r^{l+1}}P_l(\cos\theta)]\\
+        &=-\hat r\pd{}{r}[\sum_{l=1}^\infty A_lr^{l+1}P_l(\cos\theta)]-\hat\theta\frac{1}{r}\pd{}{\theta}[\sum_{l=1}^{\infty}A_lr^{-(l+1)}P_l(\cos\theta)]
+\end{align*}
+The $\theta$ components of the electric field are continuous at $r=R$.
+\begin{align*}
+  -\frac{\mu_0 m\omega}{2\pi}\sin\theta\cos\theta=A_1R^{-3}\sin\theta+A_2R^{-4}3\cos\theta\sin\theta+A_3R^{-5}(\frac{15}{2}\cos^2\theta\sin\theta-\frac{3}{2}\sin\theta)+...
+\end{align*}
+Only $\sin\theta\cos\theta$ terms match, we have
+\begin{align*}
+  A_2=-\frac{\omega\mu_0 m}{6\pi}R^2\qquad A_l=0\ when\ l\neq 2
+\end{align*}
+Outside the shpere the electric field,
+\begin{align*}
+  E_r=-\frac{\mu_0 m \omega}{2\pi}\frac{R^2}{r^4}P_2(\cos\theta)\\
+  E_\theta=\frac{\mu_0 m \omega}{6\pi}\frac{R^2}{r^4}\pd{}{\theta}P_2(\cos\theta)
+\end{align*}
+can be written as,
+\begin{align*}
+  E_r=\frac{3}{\varepsilon_0}\frac{q_{20}}{r^4}\sqrt{\frac{5}{4\pi}}P_2(\cos\theta)
+\end{align*}
+where
+\begin{align*}
+  q_{20}=\frac{-2}{3}\sqrt{\frac{4}{4\pi}}\frac{m\omega R^2}{c^2}
+\end{align*}
+The quadrupole component $Q_{33}$,
+\begin{align*}
+  Q_{33}=2\sqrt{\frac{4\pi}{5}}q_{20}=-\frac{4m\omega R^2}{3c^2}
+\end{align*}
+Since the quadrupole components are traceless,
+\begin{align*}
+  Q_{11}=Q_{22}=-\frac{1}{2}Q_{33}
+\end{align*}
+
+\section*{Jackson 6.4(c)}
+
+On the boundary of the sphere,
+\begin{align*}
+  (\vec E_2-\vec E_1)\cdot\hat n=\frac{\sigma}{\varepsilon_0}
+\end{align*}
+\begin{align*}
+  \sigma&=\varepsilon_0(E_{r_{out}}-E_{r_{in}})|_{r=R}\\
+        &=\varepsilon_0[\frac{-\mu_0 m\omega}{2\pi}\frac{R^2}{r^4}P_2(\cos\theta)+\frac{\mu_0 m\omega}{2\pi}\frac{r}{R^3}\sin^2\theta]|_{r=R}\\
+        &=\frac{1}{4\pi R^2}\frac{4m\omega}{3c^2}[1-\frac{5}{2}P_2(\cos\theta)]
+\end{align*}
+
+\section*{Jackson 6.4(d)}
+
+The line integral is given by,
+\begin{align*}
+  e=-\int_0^{\pi/2}\vec E\cdot d\vec l=-\int_0^{\pi/2}E_{\theta}Rd\theta=\frac{\mu_0 m\omega}{2\pi R}\int_{0}^{\pi/2}\cos\theta\sin\theta d\theta=\frac{\mu_0 m\omega}{4\pi R}
+\end{align*}
+\pagebreak
+
+\section*{Jackson 6.8}
+
+From equation (6.100),
+\begin{align*}
+  \frac{1}{\mu_0}\vec B-\vec H=\vec M+(\vec D-\varepsilon_0\vec E)\times v
+\end{align*}
+We have no magnetization on the sphere so we have $\vec M=0$. Consider
+\begin{align*}
+  (\vec D-\varepsilon_0\vec E)\times v=\vec P\times v=\vec M_{eff}
+\end{align*}
+as an effective magnetization.We can write the magnetic scalar potential as
+\begin{align*}
+  \Phi_M(\vec x)=-\frac{1}{4\pi}\int_V\frac{\nabla'\cdot\vec M(\vec x')}{|\vec x-\vec x'|}d^3x'+\frac{1}{4\pi}\oint_S\frac{\hat n'\cdot\vec M(\vec x')da'}{|\vec x-\vec x'|}
+\end{align*}
+From chapter 4 we know the polarization
+\begin{align*}
+  \vec P=3\varepsilon_0\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0\hat x
+\end{align*}
+\begin{align*}
+  \vec P\times\vec v=3\varepsilon_0(\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0})E_0r\omega\sin\theta(\hat x\times\hat\phi)=3\varepsilon_0\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0\omega x\hat z 
+\end{align*}
+Here $\nabla\cdot\vec M_{eff}=0$ since $\nabla x\hat z$ vanishes.
+\begin{align*}
+  \Phi_M(\vec x)=\frac{1}{4\pi}3\varepsilon_0\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0\omega a^3\oint_{\partial S}\frac{sin\theta'\cos\phi'\cos\theta'}{|\vec x-\vec x'|}d\Omega'
+\end{align*}
+Consider
+\begin{align*}
+  \sin\theta\cos\theta\cos\phi=\sqrt{\frac{2\pi}{15}}[Y_{2,-1}-Y_{2,1}]
+\end{align*}
+and expand $1/|\vec x-\vec x'|$ as a series of shperical harmonic,
+\begin{align*}
+  \Phi_M(\vec x)&\sim\sum_{l,m}\frac{Y_{lm}(\theta,\phi)}{2l+1}\int \frac{r_<^l}{r_>^{l+1}}[Y_{2,-1}-Y_{2,1}]\\
+                &\sim\sum_{l,m}\frac{Y_{lm}(\phi,\theta)}{2l+1}\frac{r_<^l}{r_>^{l+1}}[\delta_{2,-1}-\delta_{2,1}]\\
+  &=\frac{3}{5}\varepsilon_0\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}E_0\omega\frac{a^3r_<^2}{r_>^{3}}\sin\theta\cos\theta\cos\phi
+\end{align*}
+where $r_>=max{r,a}$ and $r_<=min{r,a}$. With $r^2\sin\theta\cos\theta\cos\phi=xz$, we can combine the results for outside and inside potential to,
+\[ \boxed{\Phi_M=\frac{3}{5}\frac{\varepsilon-\varepsilon_0}{\varepsilon+2\varepsilon_0}\varepsilon_0E_0\omega\frac{a^5}{r_>^5}xz}\]
+\pagebreak
+
+
+\section*{Jackson 6.15(a)}
+
+With the assuption that we can expand the electric field as a Taylor series,
+\begin{align*}
+  \vec E=a\vec J+b\vec H+c\vec J\times\vec H+d(\vec J\cdot\vec H)\vec H+e(\vec H\cdot\vec H)\vec J+O^3(\vec H)
+\end{align*}
+
+Since $\vec E$ is a vector (odd under spatial reflection), we want every term in the expansion vector (not pseudovector).
+
+\begin{itemize}
+\item $\vec J$ is a vector, $a$ is nonzero. And when $\vec H$ vanish, we have regular Ohm's law $\vec E=\rho_0 \vec J$.
+\item $\vec H$ is a pseudovector, so we have $b=0$.
+\item $\vec J\times\vec H$ is a vector since $\vec J$ is a vector and $\vec H$ is a pseudovector. $c$ is nonzero.
+\item $\vec H\cdot\vec H$ is a scalar since $\vec H$ is a pseudovector. $(\vec H\cdot\vec H)\vec J$ is a vector. $e$ is nonzero.
+\item $\vec H\cdot\vec J$ is a pseudoscalar and $\vec H$ is pseudovector. This makes $(\vec J\cdot\vec H)\vec H$ a vector. $d$ is nonzero.
+\end{itemize}
+In sum, we will have the expansion of $\vec E$ in form of,
+\[\boxed{\vec E=\rho_0\vec J+c\vec J\times\vec H+d(\vec J\cdot\vec H)\vec H+e(\vec H\cdot\vec H)\vec J}\]
+
+\section*{Jackson 6.15(b)}
+
+We start from the expreesion in part a,
+\[{\vec E=\rho_0\vec J+c\vec J\times\vec H+d(\vec J\cdot\vec H)\vec H+e(\vec H\cdot\vec H)\vec J}\]
+The electric field is even under time reversal, so we want every term in the right-hand side follows the same way.
+\begin{itemize}
+\item The current density $\vec J$ is odd under time reversal and $\rho_0$ is odd too. So we have $\rho_0\vec J$ unchanged under time reversal.
+\item Both $\vec J$ and $\vec H$ is odd under time reversal, so this makes the cross production even.
+\item Both $\vec J\cdot\vec H$ and $\vec H\cdot\vec H$ gives even scalar under time reversal, so $(\vec J\cdot\vec H)\vec H$ and $(\vec H\cdot\vec H)\vec J$ are odd under time reversal.
+\end{itemize}
+In sum, only the first two terms remain when we consider the time reversal invariance,
+\[ \boxed{\vec E=\rho_0\vec J+c\vec J\times\vec H} \]
+\pagebreak
+
+\section*{Jackson 6.18(a)}
+
+Consider the Dirac expression,
+\[ \vec A=\frac{g}{4\pi}\int_L\frac{d\vec l'\times(\vec x-\vec x')}{|\vec x-\vec x'|^3} \]
+The monopole is located at the origin and the string along the negative z axis. Thus we can evaluate the integral,
+\begin{align*}
+  \vec A(\vec x)&=\frac{g}{4\pi}\int_0^{-\infty}\frac{\hat z\times\vec R}{R^3}dz'\\
+                &=\frac{g}{4\pi}\int_0^{-\infty}\frac{\hat z\times(r\sin\theta\cos\phi\hat x+r\sin\theta\sin\phi\hat y+(r\cos\theta-z')\hat z)}{[r^2\sin^2\theta+(r\cos\theta-z')^2]^{3/2}}dz'\\
+                &=\frac{g}{4\pi}\int_0^{-\infty}\frac{r\sin\theta\sin\phi\hat x-r\sin\theta\cos\phi\hat y}{[r^2\sin^2\theta+(r\cos\theta-z')]}dz'\\
+                &=\frac{g}{4\pi}\int_0^{-\infty}\frac{r\sin\theta\hat\phi}{[r^2\sin^2\theta+(r\cos\theta-z')^2]^{3/2}}dz'\\
+                &=\hat\phi\frac{g}{4\pi}\frac{z'-r\cos\theta}{r\sin\theta\sqrt{r^2\sin^2\theta+(r\cos\theta-z')^2}}|_{-\infty}^{0} \\
+                &=\hat\phi\frac{g}{4\pi}\frac{1-\cos\theta}{r\sin\theta}
+\end{align*}
+The only nontrivial component of $\vec A$ is
+\[ \boxed{A_\phi=\frac{g(1-\cos\theta)}{4\pi r\sin\theta}=\frac{g}{4\pi r}\tan(\frac{\theta}{2})} \]
+
+\section*{Jackson 6.18(b)}
+
+\begin{align*}
+  \vec B&=\nabla\times\vec A\\
+         &=\frac{1}{r^2\sin\theta}(\hat r\pd{}{\theta}\frac{g(1-\cos\theta)}{4\pi}-r\hat\theta\pd{}{r}\frac{g(1-\cos\theta)}{4\pi})\\
+         &=\frac{1}{4\pi}\frac{g}{r^2}\hat r[\frac{1}{\sin\theta}\pd{}{\theta}(1-\cos\theta)]\\
+         &=\frac{1}{4\pi}\frac{g}{r^2}\hat r
+\end{align*}
+It is a Coulomb-like field of a point charge. But when $\theta=\pi$,
+$\frac{1}{\sin\theta}$
+is not well-behaved. In that case, the result above is not valid.
+
+
+\section*{Jackson 6.18(c)}
+
+From part b, we find that $\vec b$ is a Coulomb-like field of a point charge. The total magnetic flux through a sphere that encolsed the charge is given by Guass's law,
+\[ \oint\vec B\cdot d\vec S=g \]
+
+To calculate the magnetic flux through the circular loop of radius $R\sin\theta$. We consider the area the loop cut on a sphere of radius $R$. (When $\theta<\pi/2$)
+
+\begin{align*}
+  S=\int_0^{2\pi}\int_0^{\theta}R^2\sin\theta d\phi d\theta=2\pi R^2(1-\cos\theta)
+\end{align*}
+
+The magnetic flux,
+
+\begin{align*}
+  \int\vec B\cdot d\vec S=\frac{S}{4\pi R^2}g=\frac{g}{2}(1-\cos\theta)
+\end{align*}
+
+Consider $\theta>\pi/2$ and we calcuate the upward flux. Actually it's just the inward flux when we consider the flux through the sphere. The calculation is the same but with a minus sign.
+
+\begin{align*}
+  S'=\int_0^{2\pi}\int_{\theta}^{\pi}R^2\sin\theta d\phi d\theta=2\pi R^2(1+\cos\theta)
+\end{align*}
+\begin{align*}
+  \int\vec B\cdot d\vec S_{upward}=-\frac{S'}{4\pi R^2}=-\frac{g}{2}(1+\cos\theta)
+\end{align*}
+
+\section*{Jackson 6.18(d)}
+
+By apply Stoke's law, we find the flux through the loop,
+\begin{align*}
+  \int_S\vec B\cdot d\vec S&=\int_C\vec A\cdot d\vec l\\
+                           &=\int_0^{2\pi}A_\phi R\sin\theta d\phi\\
+                           &=\frac{g}{2}(1-\cos\theta)
+\end{align*}
+The integral gives the result for both $\theta<\pi/2$ and $\theta>\pi/2$. It's easy to find that the results are same when $\theta<\pi/2$ and have a diffence of $g$ when $\theta>\pi/2$.
+\pagebreak
+
+\section*{Jackson 6.20(a)}
+
+\begin{align*}
+  \Phi(\vec x,t)&=\frac{1}{4\pi\varepsilon_0}\int\frac{\rho(\vec x',t)}{|\vec x-\vec x'|}d^3x'\\
+                &=\frac{1}{4\pi\varepsilon_0}\int\frac{\delta(x')\delta(y')\delta'(z')\delta(t)}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}d^3x'\\
+                &=\frac{\delta(t)}{4\pi\varepsilon_0}\int\frac{\delta'(z')}{\sqrt{x^2+y^2+(z-z')^2}}dz'\\
+                &=-\frac{\delta(t)}{4\pi\varepsilon_0}[\frac{1}{\sqrt{x^2+y^2+(z-z')^2}}]'_{z'=0}\\
+                &=-\frac{\delta(t)}{4\pi\varepsilon_0}\frac{z}{r^3}
+\end{align*}
+
+\section*{Jackson 6.20(b)}
+
+\begin{align*}
+  \vec J_t(\vec x,t)&=\frac{1}{4\pi}\nabla\times\nabla\times\int\frac{\vec J(\vec x',t)}{|\vec x-\vec x'|}d^3x'\\
+                    &=\frac{1}{4\pi}\nabla\times\nabla\times\int\frac{-\delta(x')\delta(y')\delta(z')\delta'(t)}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}d^3x'\\
+                    &=-\frac{1}{4\pi}\delta'(t)\nabla\times\nabla\times\frac{\hat z}{r}\\
+                    &=-\frac{1}{4\pi}\delta'(t)[\nabla(\nabla\cdot\frac{\hat z}{r})-\nabla^2\frac{\hat z}{r}]
+\end{align*}
+We have,
+\begin{align*}
+  \nabla\cdot\frac{\hat z}{r}=-\frac{z}{r^3}\qquad\nabla^2\frac{\hat z}{r}=-4\pi\hat z\delta(\vec x)
+\end{align*}
+Recall in chapter 4 we calculated the electric field of a dipole in the form of
+\begin{align*}
+  \vec E=-\nabla\Phi=\frac{1}{4\pi\varepsilon_0}[\frac{3\hat n(\vec p\cdot\hat n)-\vec p}{|\vec x|^3}-\frac{4\pi}{3}\vec p\delta(\vec x)]
+\end{align*}
+from the dipole potential,
+\begin{align*}
+  \Phi=\frac{1}{4\pi\varepsilon_0}\frac{\vec p\cdot\vec x}{r^3}
+\end{align*}
+With an anology of $\vec p\rightarrow\hat z$,
+\begin{align*}
+  \vec J_t(\vec x,t)=-\delta'(t)[\frac{3\hat n(\hat z\cdot\hat n)-\hat z}{4\pi r^3}+\frac{2}{3}\hat z\delta(\vec x)]
+\end{align*}
+\pagebreak
+
+\section*{Jackson 6.20(c)}
+
+We can use Jefimenko's generalizations of the Coulomb law to calculate the electric field directly.
+\begin{align*}
+  \vec E(\vec x,t)=\frac{1}{4\pi\varepsilon_0}\int d^3x'\{\frac{\hat R}{R^2}[\rho(\vec x',t')]_{ret}+\frac{\hat R}{cR}[\pd{\rho(\vec x',t')}{t'}]_{ret}-\frac{1}{c^2R}[\pd{\vec J(\vec x',t')}{t'}]_{ret}\}
+\end{align*}
+In this case,
+\begin{align*}
+  \rho(\vec x,t)=\delta(x)\delta(y)\delta'(z)\delta(t)\quad \vec J(\vec x,t)=-\delta(x)\delta(y)\delta(z)\delta'(t)\hat z
+\end{align*}
+Evaluate the three terms,
+\begin{align*}
+  \int d^3x'\frac{\hat R}{R^2}[\rho(\vec x',t')]_{ret}&=\int d^3x'\frac{x\hat x+y\hat y+z\hat z}{[(x-x')^2+(y-y')^2+(z-z')^2]^{3/2}}\delta(x')\delta(y')\delta'(z')\delta(t-\frac{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}{c})\\
+                                                      &=\int d^3x'\frac{(x\hat x+y\hat y+z\hat z)\delta(t-\frac{\sqrt{x^2+y^2+(z-z')^2}}{c})}{[x^2+y^2+(z-z')^2]^{3/2}}\delta'(z')\\
+                                                      &=-[\frac{(x\hat x+y\hat y+z\hat z)\delta(t-\frac{\sqrt{x^2+y^2+(z-z')^2}}{c})}{[x^2+y^2+(z-z')^2]^{3/2}}]'|_{z'=0}\\
+  &=-(x\hat x+y\hat y+z\hat z)[\frac{3z\delta(t-r/c)}{r^5}+\frac{z}{cr^4}\delta'(t-r/c)]
+\end{align*}
+\begin{align*}
+  \int d^3x'\frac{\hat R}{cR}[\pd{\rho(\vec x',t')}{t'}]_{ret}&=\frac{1}{c}\pd{}{t}(x\hat x+y\hat y+z\hat z)\int d^3x'\frac{[\rho(\vec x',t')]_{ret}}{(x-x')^2+(y-y')^2+(z-z')^2}\\
+                                                              &=\frac{1}{c}\pd{}{t}(x\hat x+y\hat  y+z\hat z)[\frac{2z}{r^4}\delta(t-r/c)+\frac{z}{cr^3}\delta'(t-r/c)]\\
+                                                              &=(x\hat x+y\hat y+z\hat z)[\frac{2z}{cr^4}\delta'(t-r/c)+\frac{z}{c^2r^3}\delta''(t-r/c)]
+\end{align*}
+\begin{align*}
+  \int d^3x'\frac{1}{c^2R}[\pd{\vec J(\vec x',t')}{t'}]_{ret}&=\frac{1}{c^2}\pd{}{t}\int d^3x'\frac{1}{\sqrt{(x-x')^2+(y-y')^2+(z-z')^2}}\delta(x')\delta(y')\delta(z')\delta'(t-r/c)\hat z\\
+                                                             &=\hat z\frac{1}{c^2r}\delta''(t-r/c)
+\end{align*}
+Write the Cartesian coordinates in spherical coordinates,
+\begin{align*}
+  x=r\sin\theta\cos\phi\quad y=r\sin\theta\sin\phi\quad z=r\cos\theta
+\end{align*}
+And change the varibles in delta fuctions,
+\begin{align*}
+  \delta(t-r/c)=c\delta(r-ct)\\
+  \delta'(t-rc)=-c^2\delta'(r-ct)\\
+  \delta''(t-rc)=c^3\delta''(r-ct)
+\end{align*}
+Combine all the terms together,
+\[ \boxed{E_x=\frac{1}{4\pi\varepsilon_0}\frac{c}{r}[-\delta''(r-ct)+\frac{3}{r}\delta'(r-ct)-\frac{3}{r^2}\delta(r-ct)]\sin\theta\cos\theta\cos\phi} \]
+\[ \boxed{E_y=\frac{1}{4\pi\varepsilon_0}\frac{c}{r}[-\delta''(r-ct)+\frac{3}{r}\delta'(r-ct)-\frac{3}{r^2}\delta(r-ct)]\sin\theta\cos\theta\sin\phi} \]
+\[ \boxed{E_z=\frac{1}{4\pi\varepsilon_0}\frac{c}{r}['sin^2\theta\delta''(r-ct)+(3\cos^2\theta-1)(\frac{\delta'(r-ct)}{r}-\frac{\delta(r-ct)}{r^2})]}\]
+\end{document}

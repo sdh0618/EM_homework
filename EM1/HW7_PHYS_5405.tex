@@ -1,0 +1,180 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{latexsym}
+\usepackage{graphicx}
+\usepackage[left=1cm,right=1cm]{geometry}
+\usepackage{bm}
+\newcommand{\comment}[1]{}
+\newcommand{\field}[1]{\mathbb{#1}} % requires amsfonts
+\newcommand{\pd}[2]{\frac{\partial#1}{\partial#2}}
+\begin{document}
+\title{HW7 Classical Electromagnetism, Fall 2016}
+\author{Deheng Song}
+\maketitle
+
+\section*{Jackson 4.8(a)}
+
+The general solutions for the potentials are,\\
+1). Outside the shell for the boundary condition at infinity, $\Phi\rightarrow -E_0r\cos\theta$. The potential outside the shell
+\[ \Phi_1=-E_0\rho\cos\theta+\sum_1^\infty (A_n\sin n\theta+B_n\cos n\theta)\rho^{-n} \]
+2). Inside the cylindrical shell ($a<r<b$),
+\[ \Phi_2=A'_0+B'_0\ln\rho+\sum_1^\infty[(A'_n\rho^n+B'_n\rho^{-n})\sin n\theta+(C'_n\rho^n+D'_n\rho^{-n})\cos n\theta] \]
+3). In the cylindrical shell ($a<r$), we want the potential well-behaved at $r=0$,
+\[ \Phi_3=A''_0+\sum_1^\infty(A''_n\sin n\theta+B''_n\cos n\theta)\rho^n \]
+From the boundary conditions at $r=a$ and $r=b$,
+
+\begin{align*}
+  -\frac{1}{a}\pd{\Phi_3}{\theta}|_{\rho=a}&=-\frac{1}{a}\pd{\Phi_2}{\theta}|_{\rho=a}\\
+  \sum_1^\infty(nA''_n\cos n\theta-nB''_n\sin n\theta)a^n&=\sum_1^\infty[n(A'_na^n+B'_na^{-n})\cos n\theta-n(C'_na^n+D'_na^{-n})\sin n\theta]
+\end{align*}
+
+\begin{align*}
+  -\frac{1}{b}\pd{\Phi_2}{\theta}|_{\rho=b}&=-\frac{1}{b}\pd{\Phi_1}{\theta}|_{\rho=b}\\
+  \sum_1^\infty[n(A'_nb^n+B'_nb^{-n})\cos n\theta-n(C'_nb^n+D'_nb^{-n})\sin n\theta]&=E_0b\sin\theta+\sum_1^\infty b^{-n}(A_n\cos n\theta-B_n\sin n\theta)
+\end{align*}
+
+\begin{align*}
+  -\varepsilon_0\pd{\Phi_3}{\rho}|_{\rho=a}&=-\varepsilon\pd{\Phi_2}{\rho}|_{\rho=a}\\
+  \sum_1^\infty na^{n-1}\varepsilon_0(A''_n\sin n\theta+B''_n\cos n\theta)&=\varepsilon[\frac{B_0'}{a}+\sum_1^\infty na^{n-1}(A'_n\sin n\theta+C'_n\cos n\theta)-na^{-(n+1)}(B'_n\sin n\theta+D'_n\cos n\theta)]
+\end{align*}
+\begin{align*}
+  -\varepsilon\pd{\Phi_2}{\rho}|_{\rho=b}&=-\varepsilon_0\pd{\Phi_1}{\rho}|_{\rho=b}\\
+  \varepsilon[\frac{B_0'}{b}+\sum_1^\infty nb^{n-1}(A'_n\sin n\theta+C'_n\cos n\theta)-nb^{-(n+1)}(B'_n\sin n\theta+D'_n\cos n\theta)]&=\varepsilon_0[-E_0\cos\theta-\sum_0^\infty nb^{-(n+1)}(A_n\sin n\theta+B_n\cos n\theta)]
+\end{align*}
+Every terms in both sides must match. We find,
+\[ A_n=0\qquad B_n=0\qquad (n\neq 1) \]
+\[A_1=0\qquad B_1=\frac{b^2(b^2-a^2)(\varepsilon^2-\varepsilon_0^2)E_0}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\]
+\[ A'_0=B'_0=0=A'_n=B'_n=0;\qquad C'_n=D'_n=0\quad n\neq 1 \]
+\[ C_1=\frac{-2b^2\varepsilon_0(\varepsilon+\varepsilon_0)E_0}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon)^2}\qquad D_1=\frac{-2a^2b^2\varepsilon_0(\varepsilon-\varepsilon_0)E_0}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\]
+\[ A''_0=A''_n=0 \]
+\[ B''_1=\frac{-4b^2\varepsilon\varepsilon_0E_0}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2};\qquad B''_n=0\quad n\neq 1\]
+The potential,
+\[ \Phi_1=(-\rho+\frac{b^2(b^2-a^2)(\varepsilon^2-\varepsilon_0^2)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho})E_0\cos\theta \]
+\[ \Phi_2=(\frac{-2b^2\varepsilon_0(\varepsilon+\varepsilon_0)\rho}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon)^2}+\frac{-2a^2b^2\varepsilon_0(\varepsilon-\varepsilon_0)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho})E_0\cos\theta \]
+\[\Phi_3=\frac{-4b^2\varepsilon\varepsilon_0\rho E_0\cos\theta}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\]
+The electric field,
+\[ \bm E=-\nabla\Phi=-\pd{\Phi}{\rho}\hat e_\rho-\frac{1}{\rho}\pd{\Phi}{\theta}\hat e_\theta\]
+\[ \bm E_1=(1+\frac{b^2(b^2-a^2)(\varepsilon^2-\varepsilon_0^2)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho^2})E_0\cos\theta\hat e_\rho+(-\rho+\frac{b^2(b^2-a^2)(\varepsilon^2-\varepsilon_0^2)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho})E_0\sin\theta\hat e_\theta \]
+\begin{align*}
+\bm E_2=(\frac{2b^2\varepsilon_0(\varepsilon+\varepsilon_0)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon)^2}-\frac{2a^2b^2\varepsilon_0(\varepsilon-\varepsilon_0)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho^2})E_0\cos\theta\hat e_\rho\\+(\frac{-2b^2\varepsilon_0(\varepsilon+\varepsilon_0)\rho}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon)^2}+\frac{-2a^2b^2\varepsilon_0(\varepsilon-\varepsilon_0)}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\frac{1}{\rho})E_0\sin\theta\hat e_\theta
+\end{align*}
+\[ \bm E_3=\frac{4b^2\varepsilon\varepsilon_0 E_0\cos\theta}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\hat e_\rho+\frac{-4b^2\varepsilon\varepsilon_0\rho E_0\sin\theta}{b^2(\varepsilon+\varepsilon_0)^2-a^2(\varepsilon-\varepsilon_0)^2}\hat e_\theta\]
+\pagebreak
+
+\section*{Jackson 5.1}
+
+The magnetic induction at P is
+\[ \bm B=\frac{\mu_0I}{4\pi}\oint d\bm l'\times\frac{\bm x-\bm x'}{|\bm x-\bm x'|^3} \]
+Now we consider the magnitude of $\bm B$,
+\[ |\bm B|=\bm B\cdot\hat n \]
+where $\hat n$ is the unit vector in $\bm B$ direction. When we specify the loop of current, $\hat n$ is constant. Using
+\[ \frac{\bm x-\bm x'}{|\bm x-\bm x'|^3}=\nabla'\frac{1}{|\bm x-\bm x'|} \]
+we find,
+\begin{align*}
+  |\bm B|&=\frac{\mu_0I}{4\pi}\oint_{\partial S}\hat n\cdot(d\bm l'\times\nabla'\frac{1}{|\bm x-\bm x'|})\\
+         &=\frac{\mu_0I}{4\pi}\oint_{\partial S} d\bm l'\cdot[(\nabla'\frac{1}{|\bm x-\bm x'|})\times\hat n]\\
+         &=\frac{\mu_0I}{4\pi}\oint_{S}\nabla'\times[(\nabla'\frac{1}{|\bm x-\bm x'|})\times\hat n]\cdot d\bm a
+\end{align*}
+Here,
+\[ \nabla\times(\nabla\frac{1}{|\bm x-\bm x'|}\times\hat n)=\hat n(\nabla^2\frac{1}{|\bm x-\bm x'|})-\frac{1}{|\bm x-\bm x'|}(\nabla\cdot\hat n)+(\hat n\cdot\nabla)\nabla\frac{1}{|\bm x-\bm x'|}-(\nabla\frac{1}{|\bm x-\bm x'|}\cdot\nabla)\hat n \]
+For $\hat n$ is a constant vector, the second and last terms vanish. For $\nabla^2\frac{1}{|\bm x-\bm x'|}=0$, the first term vanishes. Here $\hat n\cdot\nabla'=\pd{}{n}$ can be taken out from the integral.Using
+\[ \nabla'(\frac{1}{|\bm x-\bm x'|})\cdot d\bm a=-d\Omega \]
+we have
+\begin{align*}
+  |\bm B|&=\frac{\mu_0I}{4\pi}\hat n\cdot\nabla\oint_Sd\Omega\\
+         &=\frac{\mu_0I}{4\pi}\hat n\cdot\nabla\Omega
+\end{align*}
+Thus,
+\[\boxed{\bm B=\frac{\mu_0I}{4\pi}\nabla\Omega}\]
+\pagebreak
+
+\section*{Jackson 5.3}
+
+Start from a circular loop centering at the origin in x-y plane with a current $I$, try to find the magnetic field along the z-axis.In cylindrical coordinates,
+\[ dB=\frac{\mu_0Ia}{4\pi}\frac{1}{a^2+z^2}d\theta \]
+where $a$ is the radius of the loop.The component on the z-axis,
+\[ dB_z=\frac{a}{\sqrt{a^2+z^2}}dB=\frac{\mu_0I}{4\pi}\frac{a^2}{(a^2+z^2)^{\frac 32}}d\theta \]
+\[ B_z=\int_0^{2\pi}dB_z=\frac{\mu_0I}{2}\frac{a^2}{(a^2+z^2)^{\frac 32}} \]
+For the right-circular solenoid, the magnetic induction caused by $dz$ is
+\[ dB_z'=\frac{\mu_0NI}{2}\frac{a^2}{(a^2+z^2)^{\frac 32}}dz \]
+For a point on the cylinder axis,
+\begin{align*}
+  B_z&=\frac{\mu_0NI}{2}\int_{-z_1}^{z_2}\frac{a^2}{(a^2+z^2)^{\frac 32}}dz\\
+  &=\frac{\mu_0NI}{2}[\frac{z}{\sqrt{a^2+z^2}}]|^{z_2}_{-z_1}\\
+  &=\frac{\mu_0NI}{2}[\frac{z_2}{\sqrt{a^2+z_z^2}}+\frac{z_1}{\sqrt{a^2+z_1^2}}]\\
+     &=\frac{\mu_0NI}{2}[\cos\theta_2+\cos\theta_1]
+\end{align*}
+\pagebreak
+
+\section*{Jackson 5.4(a)}
+
+We expand $B_z$ and $B_\rho$ in Taylor series,
+\[ B_z(\rho,z)=\sum_0^{\infty}\frac{\rho^n}{n!}\frac{d^n}{d\rho^n}B_z(0,z) \]
+\[ B_\rho(\rho,z)=\sum_0^\infty\frac{\rho^n}{n!}\frac{d^n}{d\rho^n}B_\rho(0,z) \]
+Near the axis, we have,
+\[\nabla\cdot B=0 \]
+\[\nabla\times B=0 \]
+From the first equation,
+\[ \frac{1}{\rho}\pd{}{\rho}\rho B_\rho+\pd{}{z}B_z=\sum_0^{\infty}(\frac{(n+1)\rho^{n-1}}{n!}\frac{d^n}{d\rho^n}B_\rho(0,\rho)+\frac{\rho^n}{n!}\pd{}{z}\frac{d^n}{d\rho^n}B_z(0,z))=0\]
+\[ \frac{B_\rho(0,z)}{\rho}+\sum_0^\infty\frac{\rho^n}{n!}(\frac{n+2}{n+1}\frac{d^{n+1}}{d\rho^{n+1}}B_\rho(0,z)+\pd{}{z}\frac{d^n}{d\rho^n}B_z(0,z))=0 \]
+This is valid for all $\rho$ only when
+\[ B_\rho(0,z)=0\]
+\[ \frac{n+2}{n+1}\frac{d^{n+1}}{d\rho^{n+1}}B_\rho(0,z)=-\pd{}{z}\frac{d^n}{d\rho^n}B_z(0,z) \]
+For the second one, under the cylindrical symmtry, we only need to condiser the $\phi$ component,
+\[ \pd{}{z}B_\rho-\pd{}{\rho}B_z=\sum_0^\infty(\frac{\rho^n}{n!}\pd{}{z}\frac{d^n}{d\rho^n}B_\rho(0,z)-\frac{\rho^{n-1}}{(n-1)!}\frac{d^n}{d\rho^n}B_z(0,z))=0 \]
+\[ \sum_0^\infty\frac{\rho^n}{n!}(\pd{}{z}\frac{d^n}{\rho^n}B_\rho(0,z)-\frac{d^{n+1}}{d\rho^{n+1}}B_z(0,z))=0 \]
+\[ -\frac{n}{n+1}\pd{^2}{z^2}B_z(0,z)=\pd{}{z}\frac{d^n}{\rho^n}B_\rho(0,z)=\frac{d^{n+1}}{d\rho^{n+1}}B_z(0,z)\]
+Form $B_\rho(0,z)=0$, we find $\pd{}{z}B_z(0,z)=0$, thus all the odd terms in the Taylor series of $B_z$ vanish. Since $B_z(0.z)$ is known, the even terms in the series,
+\[ \frac{d^n}{d\rho^n}B_z(0,z)=\frac{(-1)^{\frac 12}}{2^n}\frac{n!}{[(n/2)!]^2}\pd{^n}{z^n}B_z(0,z) \]
+In the same time, only the odd terms in the Taylor series of $B_\rho$ remains.
+\[ \frac{d^{n+1}}{d\rho^{n+1}}B_\rho(0,z)=\frac{(-1)^{n/2+1}}{2^n}\frac{n+1}{n+2}\frac{n!}{[(n/2)!]^{2}}\pd{^{n+1}}{z^{n+1}}B_z(0,z)\]
+Insert into the series, we find,
+\[ B_z(\rho.z)=B_z(0,z)-(\frac{\rho^2}{4})[\pd{^2}{z^2}B_z(0,z)]+...\]
+\[ B_\rho(\rho,z)=-(\frac{\rho}{2})\pd{}{z}B_z(0,z)+\frac{\rho^3}{16}[\pd{^3}{z^3}B_z(0,z)]+...\]
+\pagebreak
+
+\section*{Jackson 5.7(a)}
+
+Start from
+\[ d\bm B=kI\frac{d\bm l\times\bm x}{|\bm x|^3} \]
+Because the problem has azimuthal symmtry, the magnetic induction on z-axis has only the $\hat e_z$ component. In cylindrical coordinates, the magnetic induction casued by $dl$ on the loop at a point on the z-axis is,
+\[ dB=\frac{\mu_0I}{4\pi}\frac{ad\theta\sqrt{a^2+z^2}}{(a^2+z^2)^{\frac 32}}=\frac{\mu_0I}{4\pi}\frac{ad\theta}{a^2+z^2} \]
+By azimuthal symmtry, we only need to consider the component on the z-axis.
+\[ dB_z=\sin\arctan\frac az dB=\frac{\mu_0I}{4\pi}\frac{a}{\sqrt{a^2+z^2}}\frac{ad\theta}{a^2+z^2}=\frac{\mu_0I}{4\pi}\frac{a^2}{(a^2+z^2)^{\frac 32}}d\theta \]
+The magnetic induction on the z-axis,
+\[ \boxed{\bm B=\hat e_z\int_0^{2\pi}\frac{\mu_0I}{4\pi}\frac{a^2}{(a^2+z^2)^{\frac 32}}d\theta=\frac{\mu_0I}{2}\frac{a^2}{(a^2+z^2)^{\frac 32}}\hat e_z} \]
+
+\section*{Jackson 5.7(b)}
+
+After relocated the orgin, the magnetic induction near the orgin apparently to be,
+
+\begin{align*}
+  B_z=\frac{\mu_0I}{2}[\frac{a^2}{[a^2+(\frac b2-z)^2]^{\frac 32}}+\frac{a^2}{[a^2+(\frac b2+z)]^{\frac 32}}]
+\end{align*}
+Expand the two parts in power of z,
+\begin{align*}
+  \frac{1}{[a^2+\frac{b^2}{4}+z^2-bz]^{\frac 32}}+\frac{1}{[a^2+\frac{b^2}{4}+z^2+bz]^{\frac 32}}=\frac{1}{[z^2-bz+d^2]^{\frac 32}}+\frac{1}{[z^2+bz+d^2]^{\frac 32}}
+\end{align*}
+\begin{align*}
+  [z^2-bz+d^2]^{-\frac 32}=\frac{1}{d^3}+\frac{3b}{2d^5}z-\frac{3(-5b^2+4d^2)}{8d^7}z^2-\frac{5(-7b^3+12bd^2)}{16d^9}z^3+\frac{15(21b^4-56b^2d^2+16d^4)}{128d^{11}}z^4\\
+  [z^2+bz+d^2]^{-\frac 32}=\frac{1}{d^3}-\frac{3b}{2d^5}z-\frac{3(-5b^2+4d^2)}{8d^7}z^2+\frac{5(-7b^3+12bd^2)}{16d^9}z^3+\frac{15(21b^4-56b^2d^2+16d^4)}{128d^{11}}z^4
+\end{align*}
+Combine together we find the odd terms vanish,
+\[ \boxed{B_z=\frac{\mu_0Ia^2}{d^3}[1+\frac{3(b^2-a^2)}{2d^4}z^2+\frac{15(b^4-6b^2)}{16d^8}z^4+...]}\]
+
+\section*{Jackson 5.7(c)}
+
+Correct to second order, the result in part (b). gives
+\[ B_z(0,z)=\frac{\mu_0Ia^2}{d^3}+\frac{\mu_0Ia^2}{d^3}\frac{3(b^2-a^2)}{d^2}z^2=\sigma_0+\sigma_2z^2 \]
+Insert to the results in 5.4(a), the magnetic inductions that off-axis near the orgin are
+\[ B_z(\rho,z)=\sigma_0+\sigma_2z^2-\frac{\rho^2}{4}\pd{^2}{z^2}(\sigma_0+\sigma_2z^2)=\sigma_0+\sigma_2(z^2-\frac{\rho^2}{2})\]
+\[ B_\rho(\rho,z)=-\frac{\rho}{2}\pd{}{z}(\sigma_0+sigma_2z^2)=-\sigma_2z\rho\]
+\section*{Jackson 5.7(d)}
+For large $|z|$, the expansion in part (b).
+\[ [z^2-bz+d^2]^{-\frac 32}=\frac{1}{|z|^3}\frac{1}{(1-bz^{-1}+d^2z^{-2})} \]
+\[ [z^2+bz+d^2]^{-\frac 32}=\frac{1}{|z|^3}\frac{1}{(1+bz^{-1}+d^2z^{-2})} \]
+So the magnetic induction is
+\[ \boxed{B_z=\frac{\mu_0Ia^2}{|z|^3}[\frac{1}{(1-bz^{-1}+d^2z^{-2})}+\frac{1}{1+bz^{-1}+d^2z^{-2}}]}\]
+We can expand it with $1/z$ and get the similar result as we found in part (b) with $d\rightarrow |z|$.
+\end{document}
